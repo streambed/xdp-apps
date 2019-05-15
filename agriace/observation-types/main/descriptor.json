@@ -1,0 +1,5 @@
+{
+  "topic": "electric-fence-data-up-json",
+  "name": "Electric Fence",
+  "secretPath": "secrets.electric-fence.key"
+}
