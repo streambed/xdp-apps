@@ -1,7 +1,3 @@
-// it worked
-
-
-
 function() {
   return {
     panels: {

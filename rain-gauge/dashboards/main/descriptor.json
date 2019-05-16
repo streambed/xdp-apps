@@ -1,0 +1,5 @@
+{
+  "id": "2fc57513-eae9-4a59-8177-4c52652f57ef",
+  "name": "Rain gauges",
+  "defaultTopics": ["rain-gauge-data-up-json"]
+}

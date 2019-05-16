@@ -1,0 +1,5 @@
+{
+  "topic": "rain-gauge-data-up-json",
+  "name": "Rain Gauge",
+  "secretPath": "secrets.rain-gauge.key"
+}
