@@ -1,0 +1,6 @@
+{
+  "id": "F82DE75C-1137-4F15-9DE5-80F7C38D24A8",
+  "name": "Hyquest Rain Gauge",
+  "inlet": "rain-gauge-data-up-mac-payload",
+  "outlets": ["rain-gauge-data-up-json"]
+}
