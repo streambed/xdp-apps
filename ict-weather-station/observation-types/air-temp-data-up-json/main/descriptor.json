@@ -1,0 +1,5 @@
+{
+    "topic": "air-temp-data-up-json",
+    "name": "Air Temperature",
+    "secretPath": "secrets.air-temp.key"
+}

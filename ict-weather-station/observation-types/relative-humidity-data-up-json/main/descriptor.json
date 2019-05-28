@@ -1,0 +1,5 @@
+{
+    "topic": "relative-humidity-data-up-json",
+    "name": "Relative Humidity",
+    "secretPath": "secrets.relative-humidity.key"
+}
