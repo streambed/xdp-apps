@@ -6,7 +6,7 @@ function(endDevice, latestObservation) {
       vapourPressure: {
         value: latestObservation.data.vapourPressure,
         name: 'VapourPressure',
-        text: latestObservation.data.vapourPressure + ' kPa',
+        text: latestObservation.data.vapourPressure.toFixed(2) + ' kPa',
         color: latestObservation.data.vapourPressure > 10 ? 'danger' : 'success',
         scaleMin: 0,
         scaleMax: 30

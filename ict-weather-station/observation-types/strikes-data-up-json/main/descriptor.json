@@ -1,5 +1,5 @@
 {
     "topic": "strikes-data-up-json",
     "name": "Strikes",
-    "secretPath": "secrets.weather-station.key"
+    "secretPath": "secrets.strikes.key"
 }

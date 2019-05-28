@@ -6,7 +6,7 @@ function(endDevice, latestObservation) {
       windSpeed: {
         value: latestObservation.data.windSpeed,
         name: 'Wind Speed',
-        text: latestObservation.data.windSpeed + ' km/h',
+        text: latestObservation.data.windSpeed.toFixed(2) + ' km/h',
         color: latestObservation.data.windSpeed > 60 ? 'danger' : 'success',
         scaleMin: 0,
         scaleMax: 100

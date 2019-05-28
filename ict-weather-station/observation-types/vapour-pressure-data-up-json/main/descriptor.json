@@ -1,5 +1,5 @@
 {
     "topic": "vapour-pressure-data-up-json",
-    "name": "Air Temperature",
-    "secretPath": "secrets.weather-station.key"
+    "name": "Vapour Pressure",
+    "secretPath": "secrets.vapour-pressure.key"
 }

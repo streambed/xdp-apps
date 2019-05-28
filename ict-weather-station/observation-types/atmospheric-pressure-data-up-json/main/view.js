@@ -6,7 +6,7 @@ function(endDevice, latestObservation) {
       atmosphericPressure: {
         value: latestObservation.data.atmosphericPressure,
         name: 'AtmosphericPressure',
-        text: latestObservation.data.atmosphericPressure + ' kPa',
+        text: latestObservation.data.atmosphericPressure.toFixed(2) + ' kPa',
         color: latestObservation.data.atmosphericPressure > 700 ? 'danger' : 'success',
         scaleMin: 0,
         scaleMax: 1000

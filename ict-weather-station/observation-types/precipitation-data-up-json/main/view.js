@@ -6,7 +6,7 @@ function(endDevice, latestObservation) {
       precipitation: {
         value: latestObservation.data.precipitation,
         name: 'precipitation',
-        text: latestObservation.data.precipitation + ' mm',
+        text: latestObservation.data.precipitation.toFixed(2) + ' mm',
         color: latestObservation.data.precipitation > 150 ? 'danger' : 'success',
         scaleMin: 0,
         scaleMax: 300

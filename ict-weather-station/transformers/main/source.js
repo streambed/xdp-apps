@@ -4,6 +4,21 @@
  * 
  * ****************************************************************************/
 
+// OUTLET DEFINITIONS:
+var ATMOSPHERIC_PRESSURE = 0;
+var X_ORIENTATION = 1;
+var Y_ORIENTATION = 2;
+var SOLAR = 3;
+var RAIN_GAUGE = 4;
+var STRIKE = 5;
+var STRIKE_DISTANCE = 6;
+var WIND_SPEED = 7;
+var WIND_DIRECTION = 8;
+var GUST_SPEED = 9;
+var AIR_TEMPERATURE = 10;
+var VAPOUR_PRESSURE = 11;
+var RELATIVE_HUMIDITY = 12;
+
 /**
  * Extracts bytes from byte_payload from start to end and converts these bytes 
  * into a float. Adapted from: 
@@ -13,32 +28,33 @@
  * @param {*} start starting byte index in payload.
  * @param {*} end ending byte index in payload.
  */
-function extractFloat(byte_payload, start, end) {
+function decodeFloat(byte_payload, start, end) {
   // Extract bytes from payload, converting each byte into its unicode value
   var bytes = [];
   for(var i = start; i < end; i++) 
     bytes.push(byte_payload[i].charCodeAt(0));
 
   // Convert bytes to a float
-  var bits = bytes[0]<<24 | bytes[1]<<16 | bytes[2]<<8 | bytes[3];
-  var sign = (bits>>>31 === 0) ? 1.0 : -1.0;
-  var e = bits>>>23 & 0xff;
-  var m = (e === 0) ? (bits & 0x7fffff)<<1 : (bits & 0x7fffff) | 0x800000;
+  var word = bytes[0]<<24 | bytes[1]<<16 | bytes[2]<<8 | bytes[3];
+  var sign = (word>>>31 === 0) ? 1.0 : -1.0;
+  var e = word>>>23 & 0xff;
+  var m = (e === 0) ? (word & 0x7fffff)<<1 : (word & 0x7fffff) | 0x800000;
   var float = sign * m * Math.pow(2, e - 150);
 
   // Return float in 2 decimal places
-  return Math.round(float*100)/100;
+  return float;
 }  
 
 /**
  * Transforms base_64 payload into an array of objects, each specifying a
  * certain observation type.
  * 
- * @param {*} time time of receiving payload?
- * @param {*} nwkAddr network address to be sent to?
- * @param {*} fPort idk?
+ * @param {*} time time of receiving the payload.
+ * @param {*} nwkAddr network address of the end device.
+ * @param {*} fPort determines which mode the packet will be read.
  * @param {*} base64_payload payload to be transformed.
  */
+
 function transform(time, nwkAddr, fPort, base64_payload) {
   var payload = atob(base64_payload);
   var commandFlag = payload[9].charCodeAt(0);
@@ -60,14 +76,14 @@ function transform(time, nwkAddr, fPort, base64_payload) {
 
   /* If command flag == 1, extract the following information:
      atmosphericPressure, xOrientation, yOrientation */
-  if (commandFlag) {
+  if (commandFlag === 1) {
     decoded.push (
-      {outlet: 0, data: {time: time, nwkAddr: nwkAddr, 
-        atmosphericPressure: extractFloat(payload, 10, 14)}},
-      {outlet: 1, data: {time: time, nwkAddr: nwkAddr, 
-        xOrientation: extractFloat(payload, 14, 18)}},
-      {outlet: 2, data: {time: time, nwkAddr: nwkAddr, 
-        yOrientation: extractFloat(payload, 18, 22)}}
+      {outlet: ATMOSPHERIC_PRESSURE, data: {time: time, nwkAddr: nwkAddr, 
+        atmosphericPressure: decodeFloat(payload, 10, 14)}},
+      {outlet: X_ORIENTATION, data: {time: time, nwkAddr: nwkAddr, 
+        xOrientation: decodeFloat(payload, 14, 18)}},
+      {outlet: Y_ORIENTATION, data: {time: time, nwkAddr: nwkAddr, 
+        yOrientation: decodeFloat(payload, 18, 22)}}
     );
   } 
   /* If command flag == 0, extract the following information:
@@ -75,26 +91,26 @@ function transform(time, nwkAddr, fPort, base64_payload) {
      gustSpeed, airTemperature, vapourPressure, relativeHumidity */
   else {
     decoded.push (
-      {outlet: 3, data: {time: time, nwkAddr: nwkAddr, 
-        solar: extractFloat(payload, 10, 14)}},
-      {outlet: 4, data: {time: time, nwkAddr: nwkAddr, 
-        precipitation: extractFloat(payload, 14, 18)}},
-      {outlet: 5, data: {time: time, nwkAddr: nwkAddr, 
-        strikes: extractFloat(payload, 18, 22)}},
-      {outlet: 6, data: {time: time, nwkAddr: nwkAddr, 
-        strikeDistance: extractFloat(payload, 22, 26)}},
-      {outlet: 7, data: {time: time, nwkAddr: nwkAddr, 
-        windSpeed: extractFloat(payload, 26, 30)}},
-      {outlet: 8, data: {time: time, nwkAddr: nwkAddr, 
-        windDirection: extractFloat(payload, 30, 34)}},
-      {outlet: 9, data: {time: time, nwkAddr: nwkAddr, 
-        gustSpeed: extractFloat(payload, 34, 38)}},
-      {outlet: 10, data: {time: time, nwkAddr: nwkAddr, 
-        airTemperature: extractFloat(payload, 38, 42)}},
-      {outlet: 11, data: {time: time,nwkAddr: nwkAddr, 
-        vapourPressure: extractFloat(payload, 42, 46)}},
-      {outlet: 12, data: {time: time, nwkAddr: nwkAddr, 
-        relativeHumidity: extractFloat(payload, 46, 50)}}
+      {outlet: SOLAR, data: {time: time, nwkAddr: nwkAddr, 
+        solar: decodeFloat(payload, 10, 14)}},
+      {outlet: RAIN_GAUGE, data: {time: time, nwkAddr: nwkAddr, 
+        level: decodeFloat(payload, 14, 18)}},
+      {outlet: STRIKE, data: {time: time, nwkAddr: nwkAddr, 
+        strikes: decodeFloat(payload, 18, 22)}},
+      {outlet: STRIKE_DISTANCE, data: {time: time, nwkAddr: nwkAddr, 
+        strikeDistance: decodeFloat(payload, 22, 26)}},
+      {outlet: WIND_SPEED, data: {time: time, nwkAddr: nwkAddr, 
+        windSpeed: decodeFloat(payload, 26, 30)}},
+      {outlet: WIND_DIRECTION, data: {time: time, nwkAddr: nwkAddr, 
+        windDirection: decodeFloat(payload, 30, 34)}},
+      {outlet: GUST_SPEED, data: {time: time, nwkAddr: nwkAddr, 
+        gustSpeed: decodeFloat(payload, 34, 38)}},
+      {outlet: AIR_TEMPERATURE, data: {time: time, nwkAddr: nwkAddr, 
+        airTemperature: decodeFloat(payload, 38, 42)}},
+      {outlet: VAPOUR_PRESSURE, data: {time: time,nwkAddr: nwkAddr, 
+        vapourPressure: decodeFloat(payload, 42, 46)}},
+      {outlet: RELATIVE_HUMIDITY, data: {time: time, nwkAddr: nwkAddr, 
+        relativeHumidity: decodeFloat(payload, 46, 50)}}
     );
   }
   return decoded;
@@ -103,5 +119,5 @@ function transform(time, nwkAddr, fPort, base64_payload) {
 function test() {
   payload = "AAAHMRBqLy8BAULMR65CrzMzwqxmZg==";
   var result = transform("2019-03-29T06:02:04.539Z", 65959, 15, payload);
-  return result[0].data.atmosphericPressure === 102.14;
+  return result[0].data.atmosphericPressure === 102.13999938964844;
 }

@@ -6,7 +6,7 @@ function(endDevice, latestObservation) {
       relativeHumidity: {
         value: latestObservation.data.relativeHumidity,
         name: 'Relative Humidity',
-        text: latestObservation.data.relativeHumidity + '',
+        text: latestObservation.data.relativeHumidity.toFixed(2) + '',
         color: latestObservation.data.relativeHumidity > 0.5 ? 'danger' : 'success',
         scaleMin: 0,
         scaleMax: 1

@@ -1,5 +1,5 @@
 {
     "topic": "atmospheric-pressure-data-up-json",
-    "name": "Wind Speed",
-    "secretPath": "secrets.weather-station.key"
+    "name": "Atmospheric Pressure",
+    "secretPath": "secrets.atmospheric-pressure.key"
 }

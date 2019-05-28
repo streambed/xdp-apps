@@ -6,7 +6,7 @@ function(endDevice, latestObservation) {
       strikes: {
         value: latestObservation.data.strikes,
         name: 'Strikes',
-        text: latestObservation.data.strikes + ' strikes',
+        text: latestObservation.data.strikes.toFixed(2) + ' strikes',
         color: latestObservation.data.strikes > 15 ? 'danger' : 'success',
         scaleMin: 0,
         scaleMax: 45
