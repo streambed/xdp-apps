@@ -1,0 +1,6 @@
+{
+  "id": "188adbae-0ff2-4827-a0fc-d57642b4a93e",
+  "name": "ICT Soil Moisture and Dendrometer Transformer",
+  "inlet": "soil-dendrometer-data-up-mac-payload",
+  "outlets": ["stem-diameter-data-up-json", "stem-temperature-data-up-json", "vwc-count-data-up-json", "temperature-data-up-json", "ec-data-up-json", "vwc-data-up-json"]
+}
