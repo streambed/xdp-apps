@@ -117,7 +117,25 @@ function transform(time, nwkAddr, fPort, base64_payload) {
 }
 
 function test() {
-  payload = "AAAHMRBqLy8BAULMR65CrzMzwqxmZg==";
-  var result = transform("2019-03-29T06:02:04.539Z", 65959, 15, payload);
-  return result[0].data.atmosphericPressure === 102.13999938964844;
+  var payload1 = "AAAHMRBqLy8BAULMR65CrzMzwqxmZg==";
+  var payload2 = "AAAHMRBqLy8BAELMR65CrzMzwqxmZkLMR65CrzMzwqxmZkLMR65CrzMzwqxmZkLMR64="
+  var result1 = transform("2019-03-29T06:02:04.539Z", 65959, 15, payload1);
+  var result2 = transform("2019-03-30T12:05:07.123Z", 12345, 14, payload2);
+  return (
+    result1.length === 3 &&
+    result1[0].data.atmosphericPressure === 102.13999938964844 &&
+    result1[1].data.xOrientation === 87.5999984741211 &&
+    result1[2].data.yOrientation === -86.19999694824219 &&
+    result2.length === 10 &&
+  	result2[0].data.solar === 102.13999938964844 &&
+    result2[1].data.level === 87.5999984741211 &&
+    result2[2].data.strikes ===  -86.19999694824219 &&
+    result2[3].data.strikeDistance === 102.13999938964844 &&
+    result2[4].data.windSpeed === 87.5999984741211 &&
+    result2[5].data.windDirection === -86.19999694824219 &&
+    result2[6].data.gustSpeed === 102.13999938964844 &&
+    result2[7].data.airTemperature === 87.5999984741211 &&
+    result2[8].data.vapourPressure ===  -86.19999694824219 &&
+    result2[9].data.relativeHumidity === 102.13999938964844
+  );
 }
