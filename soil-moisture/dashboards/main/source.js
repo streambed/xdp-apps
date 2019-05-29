@@ -52,10 +52,6 @@ function() {
     },
     layout: [
       { type: "row", entries: [
-        { type: "col", size: 4, entries: ["latestVwcCount"]},
-        { type: "col", size: 8, entries: ["historicalVwcCount"]},
-      ]},
-      { type: "row", entries: [
         { type: "col", size: 4, entries: ["latestVwc"]},
         { type: "col", size: 8, entries: ["historicalVwc"]},
       ]},
