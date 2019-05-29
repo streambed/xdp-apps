@@ -4,7 +4,7 @@
  * 
  * ****************************************************************************/
 const STEM_DIAMETER = 0;
-const STEM_TEMPEREATURE = 1;
+const STEM_TEMPERATURE = 1;
 const VWC_COUNT = 2;
 const TEMPERATURE = 3;
 const EC = 4;
@@ -28,7 +28,7 @@ function extractFloat(byte_payload, start, end) {
   var m = (e === 0) ? (bits & 0x7fffff)<<1 : (bits & 0x7fffff) | 0x800000;
   var float = sign * m * Math.pow(2, e - 150);
 
-  // Return float in 2 decimal places
+  // Return float unrounded
   return float*100/100;
 }  
 
@@ -44,7 +44,7 @@ function transform (time, nwkAddr, fPort, base64_payload) {
     decoded.push (
       {outlet: STEM_DIAMETER, data: {time: time, nwkAddr: nwkAddr, 
         stemDiameter: extractFloat(payload, 10, 13)}},
-      {outlet: STEM_TEMPEREATURE, data: {time: time, nwkAddr: nwkAddr, 
+      {outlet: STEM_TEMPERATURE, data: {time: time, nwkAddr: nwkAddr, 
         stemTemperature: extractFloat(payload, 14, 17)}}
     );
   } else {
@@ -81,7 +81,7 @@ function test() {
   var result_0 = transform("2019-03-29T06:02:04.539Z", 65959, 15, payload_0);
   assert (result_0[STEM_DIAMETER].data.stemDiameter === 102.138671875, 
     'Expected stem diameter = 102.138671875');
-  assert (result_0[STEM_TEMPEREATURE].data.stemTemperature === 87.599609375, 
+  assert (result_0[STEM_TEMPERATURE].data.stemTemperature === 87.599609375, 
     'Expected stem tempreature = 87.599609375');
     
   // Soil moisture payload for command = 1;
