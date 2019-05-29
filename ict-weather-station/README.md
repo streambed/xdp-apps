@@ -1,4 +1,4 @@
-# Setting the ICT Soil Mosture Dendrometer Sensor up in the CISCO FDP Control Panel with sandbox
+# Setting the ICT Weather Sensor up in the CISCO FDP Control Panel with sandbox
 
 Adapted from https://streambed.io/sdk-reference/tutorial/configuration.html 
 
