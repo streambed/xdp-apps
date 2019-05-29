@@ -76,7 +76,7 @@ streambed observation-type add relative-humidity-data-up-json \
   --view - < ../air-conditions/observation-types/relative-humidity/view.js
 
 # Add secrets.
-streambed secret add secrets.atmospheric-pressure.key 3B7E151628AED2A6ABF7158809CF4F3D
+streambed secret add secrets.barometric-pressure.key 3B7E151628AED2A6ABF7158809CF4F3D
 streambed secret add secrets.x-orientation.key 3B7E151628AED2A6ABF7158809CF4F3D
 streambed secret add secrets.y-orientation.key 3B7E151628AED2A6ABF7158809CF4F3D
 streambed secret add secrets.solar-radiation.key 3B7E151628AED2A6ABF7158809CF4F3D
@@ -103,7 +103,7 @@ lora end-device add weather-station-data-up-mac-payload v1 abp \
 streambed transformer add \
   --name 'ICT Weather Station Transformer' \
   --inlet-topic weather-station-data-up-mac-payload \
-  --outlet-topic atmospheric-pressure-data-up-json x-orientation-data-up-json y-orientation-data-up-json solar-radiation-data-up-json rain-gauge-data-up-json lightning-strikes-data-up-json lightning-strike-distance-data-up-json wind-speed-data-up-json wind-direction-data-up-json gust-speed-data-up-json air-temp-data-up-json vapour-pressure-data-up-json relative-humidity-data-up-json \
+  --outlet-topic barometric-pressure-data-up-json x-orientation-data-up-json y-orientation-data-up-json solar-radiation-data-up-json rain-gauge-data-up-json lightning-strikes-data-up-json lightning-strike-distance-data-up-json wind-speed-data-up-json wind-direction-data-up-json gust-speed-data-up-json air-temp-data-up-json vapour-pressure-data-up-json relative-humidity-data-up-json \
   --source - < ./transformers/main/source.js
 
 # Add MQTT.

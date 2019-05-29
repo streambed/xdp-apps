@@ -75,7 +75,7 @@ function transform(time, nwkAddr, fPort, base64_payload) {
   // ];
 
   /* If command flag == 1, extract the following information:
-     atmosphericPressure, xOrientation, yOrientation */
+     barometricPressure, xOrientation, yOrientation */
   if (commandFlag === 1) {
     decoded.push (
       {outlet: BAROMETRIC_PRESSURE, data: {time: time, nwkAddr: nwkAddr, 
@@ -87,7 +87,7 @@ function transform(time, nwkAddr, fPort, base64_payload) {
     );
   } 
   /* If command flag == 0, extract the following information:
-     solar, precipitation, strikes, strikeDistance, windSpeed, windDirection, 
+     solarRadiation, precipitation, lightningStrikes, lightningStrikeDistance, windSpeed, windDirection, 
      gustSpeed, airTemperature, vapourPressure, relativeHumidity */
   else {
     decoded.push (
