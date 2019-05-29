@@ -6,10 +6,10 @@ function(endDevice, latestObservation) {
       temperature: {
         value: latestObservation.data.temperature,
         name: 'temperature',
-        text: latestObservation.data.temperature,
-        color: latestObservation.data.temperature > 150 ? 'danger' : 'success',
+        text: latestObservation.data.temperature + ' °C',
+        color: latestObservation.data.temperature > 50 ? 'danger' : 'success',
         scaleMin: 0,
-        scaleMax: 200
+        scaleMax: 100
       }
     }
   };
