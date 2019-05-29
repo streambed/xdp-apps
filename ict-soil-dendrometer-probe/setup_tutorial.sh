@@ -5,32 +5,32 @@ echo "Starting script to set up ICT Soil Moisture Dendrometer Probe with Streamb
 lora type add soil-dendrometer-data-up-mac-payload "ICT Soil Moisture and Dendrometer Station"
 
 streambed observation-type add vwc-count-data-up-json \
-  --name 'ICT VWC Count Observations' \
+  --name 'VWC Count Observations' \
   --secret-path secrets.plant-vwc-count.key \
   --view - < ../soil-moisture/observation-types/vwc-count-data-up-json/main/view.js
 
 streambed observation-type add temperature-data-up-json \
-  --name 'ICT Temperature Observations' \
+  --name 'Temperature Observations' \
   --secret-path secrets.plant-temperature.key \
   --view - < ../soil-moisture/observation-types/temperature-data-up-json/main/view.js
 
 streambed observation-type add ec-data-up-json \
-  --name 'ICT EC Observations' \
+  --name 'EC Observations' \
   --secret-path secrets.plant-ec.key \
   --view - < ../soil-moisture/observation-types/ec-data-up-json/main/view.js
 
 streambed observation-type add vwc-data-up-json \
-  --name 'ICT VWC Observations' \
+  --name 'VWC Observations' \
   --secret-path secrets.plant-vwc.key \
   --view - < ../soil-moisture/observation-types/vwc-data-up-json/main/view.js
 
 streambed observation-type add stem-diameter-data-up-json \
-  --name 'ICT Stem Diameter Observations' \
+  --name 'Stem Diameter Observations' \
   --secret-path secrets.plant-stem-diameter.key \
   --view - < ../dendrometer/observation-types/stem-diameter-data-up-json/main/view.js
 
 streambed observation-type add stem-temperature-data-up-json \
-  --name 'ICT Stem Diameter Observations' \
+  --name 'Stem Temperature Observations' \
   --secret-path secrets.plant-stem-temperature.key \
   --view - < ../dendrometer/observation-types/stem-temperature-data-up-json/main/view.js
 
