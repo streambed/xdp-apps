@@ -1,5 +1,0 @@
-{
-    "topic": "atmospheric-pressure-data-up-json",
-    "name": "Atmospheric Pressure",
-    "secretPath": "secrets.atmospheric-pressure.key"
-}

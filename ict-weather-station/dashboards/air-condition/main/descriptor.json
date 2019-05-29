@@ -1,5 +1,0 @@
-{
-    "id": "ccb2c16f-9374-4239-bc2b-c542c0b9750c",
-    "name": "Air Conditions",
-    "defaultTopics": ["air-temp-data-up-json", "vapour-pressure-data-up-json", "relative-humidity-data-up-json"]
-  }
