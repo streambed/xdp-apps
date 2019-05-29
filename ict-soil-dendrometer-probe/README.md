@@ -40,12 +40,12 @@ password: password
 
 Generate soil moisture payload for mode _command = 1_
 ```
-docker run --rm -ti streambed-cli/amd64/lora-packet-encoder:latest 6D5E58EF92BBCE878894497271BA90ED  189D832A 00000731106A2F2F0101482F768942AF333342AF3333
+docker run --rm -ti streambed-cli/amd64/lora-packet-encoder:latest 6D5E58EF92BBCE878894497271BA90ED  189D832A 00000731106A2F2F0101455F400042AF333342AF3333
 ```
 Publish the Base64 payload
 ```
 mosquitto_pub -h localhost -p 1883 -t /tutorial/soil-dendrometer/app2dev/data -l \
-  <<< '{"key":10322730,"data":"QCqDnRgAAgABq6/vOZkU+K/nrGD2WrAEeom56vXUsSsR/w0="}'
+  <<< '{"key":10322730,"data":"QCqDnRgAAgABq6/vOZkU+K/nrG2GbDkEeom56vXUsSsR/w0="}'
 ```
 
 Generate dendrometer payload for mode _command = 0_
