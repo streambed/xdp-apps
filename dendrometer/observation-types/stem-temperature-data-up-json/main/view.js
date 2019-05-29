@@ -6,10 +6,10 @@ function(endDevice, latestObservation) {
       stemTemperature: {
         value: latestObservation.data.stemTemperature,
         name: 'stemTemperature',
-        text: latestObservation.data.stemTemperature + ' C',
-        color: latestObservation.data.stemTemperature > 150 ? 'danger' : 'success',
+        text: latestObservation.data.stemTemperature + ' °C',
+        color: latestObservation.data.stemTemperature > 50 ? 'danger' : 'success',
         scaleMin: 0,
-        scaleMax: 200
+        scaleMax: 100
       }
     }
   };
