@@ -1,0 +1,5 @@
+{
+    "id": "a7edef1f-dcce-46be-bf45-6c336d8a5ede",
+    "name": "Strikes",
+    "defaultTopics": ["strikes-data-up-json", "strike-distance-data-up-json"]
+}

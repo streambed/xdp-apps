@@ -1,0 +1,5 @@
+{
+    "topic": "strike-distance-data-up-json",
+    "name": "Strike Distance",
+    "secretPath": "secrets.strike-distance.key"
+}

@@ -1,0 +1,5 @@
+{
+    "id": "e9c1bb79-7ea1-4bd7-ac6d-799c6340ad39",
+    "name": "Wind Speed",
+    "defaultTopics": ["wind-speed-data-up-json", "wind-direction-data-up-json", "gust-speed-data-up-json"]
+}

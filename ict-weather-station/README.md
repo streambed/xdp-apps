@@ -125,7 +125,7 @@ Relative Humidity
 streambed observation-type add relative-humidity-data-up-json \
   --name 'Relative Humidity' \
   --secret-path secrets.relative-humidity.key \
-  --view - < ../air-condition/observation-types/relative-humidityg/view.js
+  --view - < ../air-condition/observation-types/relative-humidity/view.js
 ```
 
 ## Add secrets for encrypt transformed observations

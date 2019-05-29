@@ -1,0 +1,5 @@
+{
+    "topic": "x-orientation-data-up-json",
+    "name": "X Orientation",
+    "secretPath": "secrets.x-orientation.key"
+}

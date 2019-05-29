@@ -1,0 +1,5 @@
+{
+    "id": "438de591-bc9a-4531-a259-b061f85e17ec",
+    "name": "Precipitation",
+    "defaultTopics": ["precipitation-data-up-json"]
+}
