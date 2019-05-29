@@ -29,7 +29,7 @@ function extractFloat(byte_payload, start, end) {
   var float = sign * m * Math.pow(2, e - 150);
 
   // Return float unrounded
-  return float*100/100;
+  return float;
 }  
 
 /**
