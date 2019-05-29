@@ -1,0 +1,5 @@
+{
+  "id": "f90e018b-e3fe-4201-b916-9eef2f046f59",
+  "name": "Dendrometer",
+  "defaultTopics": ["stem-diameter-data-up-json", "stem-temperature-data-up-json"]
+}
