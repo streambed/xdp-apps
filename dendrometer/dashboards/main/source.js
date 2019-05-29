@@ -6,7 +6,7 @@ function() {
         type: 'ObservationBarChartCard',
         data: {
           topic: 'stem-diameter-data-up-json',
-          field: 'diameter'
+          field: 'stemDiameter'
         }
       },
       historicalStemDiameter: {
@@ -14,15 +14,15 @@ function() {
         type: 'ObservationTimeSeriesCard',
         data: {
           topic: 'stem-diameter-data-up-json',
-          field: 'diameter'
+          field: 'stemDiameter'
         }
       },
       latestStemTemperature: {
         title: 'Latest Stem Temperature',
         type: 'ObservationBarChartCard',
         data: {
-          topic: 'stem-diameter-data-up-json',
-          field: 'temperature'
+          topic: 'stem-temperature-data-up-json',
+          field: 'stemTemperature'
         }
       },
       historicalStemTemperature: {
@@ -30,7 +30,7 @@ function() {
         type: 'ObservationTimeSeriesCard',
         data: {
           topic: 'stem-temperature-data-up-json',
-          field: 'temperature'
+          field: 'stemTemperature'
         }
       },
     },
