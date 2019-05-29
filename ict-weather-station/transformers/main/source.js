@@ -8,7 +8,7 @@
 var ATMOSPHERIC_PRESSURE = 0;
 var X_ORIENTATION = 1;
 var Y_ORIENTATION = 2;
-var SOLAR = 3;
+var SOLAR_RADIATION = 3;
 var RAIN_GAUGE = 4;
 var STRIKE = 5;
 var STRIKE_DISTANCE = 6;
@@ -91,8 +91,8 @@ function transform(time, nwkAddr, fPort, base64_payload) {
      gustSpeed, airTemperature, vapourPressure, relativeHumidity */
   else {
     decoded.push (
-      {outlet: SOLAR, data: {time: time, nwkAddr: nwkAddr, 
-        solar: decodeFloat(payload, 10, 14)}},
+      {outlet: SOLAR_RADIATION, data: {time: time, nwkAddr: nwkAddr, 
+        solarRadiation: decodeFloat(payload, 10, 14)}},
       {outlet: RAIN_GAUGE, data: {time: time, nwkAddr: nwkAddr, 
         level: decodeFloat(payload, 14, 18)}},
       {outlet: STRIKE, data: {time: time, nwkAddr: nwkAddr, 
@@ -127,7 +127,7 @@ function test() {
     result1[1].data.xOrientation === 87.5999984741211 &&
     result1[2].data.yOrientation === -86.19999694824219 &&
     result2.length === 10 &&
-  	result2[0].data.solar === 102.13999938964844 &&
+  	result2[0].data.solarRadiation === 102.13999938964844 &&
     result2[1].data.level === 87.5999984741211 &&
     result2[2].data.strikes ===  -86.19999694824219 &&
     result2[3].data.strikeDistance === 102.13999938964844 &&
