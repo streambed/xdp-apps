@@ -1,9 +1,17 @@
 function() {
   return {
     panels: {
-      stemDiameter: {
+      latestStemDiameter: {
         title: 'Stem Diameter',
         type: 'ObservationBarChartCard',
+        data: {
+          topic: 'stem-diameter-data-up-json',
+          field: 'diameter'
+        }
+      },
+      historicalStemDiameter: {
+        title: 'Stem Diameter History',
+        type: 'ObservationTimeSeriesCard',
         data: {
           topic: 'stem-diameter-data-up-json',
           field: 'diameter'
@@ -28,9 +36,12 @@ function() {
     },
     layout: [
       { type: "row", entries: [
-        { type: "col", size: 3, entries: ["stemDiameter"]},
-        { type: "col", size: 3, entries: ["latestStemTemperature"]},
-        { type: "col", size: 6, entries: ["historicalStemTemperature"]},
+        { type: "col", size: 4, entries: ["latestStemDiameter"]},
+        { type: "col", size: 8, entries: ["historicalStemDiameter"]}
+      ]},
+      { type: "row", entries: [
+        { type: "col", size: 4, entries: ["latestStemTemperature"]},
+        { type: "col", size: 8, entries: ["historicalStemTemperature"]},
       ]}
     ]
   };
