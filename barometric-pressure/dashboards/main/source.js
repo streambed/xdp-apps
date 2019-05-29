@@ -1,26 +1,26 @@
 function() {
   return {
     panels: {
-      latestAtmosphericPressure: {
-        title: 'Latest Atmospheric Pressure',
+      latestBarometricPressure: {
+        title: 'Latest Barometric Pressure',
         type: 'ObservationBarChartCard',
         data: {
-          topic: 'atmospheric-pressure-data-up-json',
-          field: 'atmosphericPressure'
+          topic: 'barometric-pressure-data-up-json',
+          field: 'barometricPressure'
         }
       },
       
-      historicalAtmosphericPressure: {
-        title: 'Atmospheric Pressure Readings',
+      historicalBarometricPressure: {
+        title: 'Barometric Pressure Readings',
         type: 'ObservationTimeSeriesCard',
         data: {
-          topic: 'atmospheric-pressure-data-up-json',
-          field: 'atmosphericPressure'
+          topic: 'barometric-pressure-data-up-json',
+          field: 'barometricPressure'
         }
       }, 
       
       latestXOrientation: {
-        title: 'Latest X Orientation',
+        title: 'Compass Heading',
         type: 'ObservationCard',
         data: {
           topic: 'x-orientation-data-up-json',
@@ -29,7 +29,7 @@ function() {
       }, 
       
       latestYOrientation: {
-        title: 'Latest Y Orientation',
+        title: 'Tilt',
         type: 'ObservationCard',
         data: {
           topic: 'y-orientation-data-up-json',
@@ -45,8 +45,8 @@ function() {
         { type: "col", size: 6, entries: ["latestYOrientation"] } 
       ]},
       { type: "row", entries: [
-        { type: "col", size: 6, entries: ["latestAtmosphericPressure"] },
-        { type: "col", size: 6, entries: ["historicalAtmosphericPressure"] } 
+        { type: "col", size: 6, entries: ["latestBarometricPressure"] },
+        { type: "col", size: 6, entries: ["historicalBarometricPressure"] } 
       ]}
     ]
   };

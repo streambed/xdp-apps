@@ -1,0 +1,5 @@
+{
+    "id": "f29fef20-c31f-4fac-8227-ed74f9b7663a",
+    "name": "Barometric Pressure",
+    "defaultTopics": ["barometric-pressure-data-up-json", "x-orientation-data-up-json", "y-orientation-data-up-json"]
+}

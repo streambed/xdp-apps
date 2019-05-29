@@ -5,11 +5,11 @@ function(endDevice, latestObservation) {
     fields: {
       xOrientation: {
         value: latestObservation.data.xOrientation,
-        name: 'XOrientation',
+        name: 'Compass Heading',
         text: latestObservation.data.xOrientation.toFixed(2) + ' deg',
-        color: latestObservation.data.xOrientation > -180 ? 'danger' : 'success',
-        scaleMin: -180,
-        scaleMax: 180
+        color: latestObservation.data.xOrientation > 180 ? 'danger' : 'success',
+        scaleMin: 0,
+        scaleMax: 359
       }
     }
   };

@@ -5,10 +5,10 @@ function(endDevice, latestObservation) {
     fields: {
       yOrientation: {
         value: latestObservation.data.yOrientation,
-        name: 'YOrientation',
+        name: 'Tilt',
         text: latestObservation.data.yOrientation.toFixed(2) + ' deg',
-        color: latestObservation.data.yOrientation > -180 ? 'danger' : 'success',
-        scaleMin: -180,
+        color: latestObservation.data.yOrientation > 90 ? 'danger' : 'success',
+        scaleMin: 0,
         scaleMax: 180
       }
     }

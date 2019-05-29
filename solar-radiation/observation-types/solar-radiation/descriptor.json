@@ -1,0 +1,5 @@
+{
+    "topic": "solar-radiation-data-up-json",
+    "name": "Solar Radiation",
+    "secretPath": "secrets.solar-radiation.key"
+}

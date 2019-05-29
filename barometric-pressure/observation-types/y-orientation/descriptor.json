@@ -1,5 +1,5 @@
 {
     "topic": "y-orientation-data-up-json",
-    "name": "Y Orientation",
+    "name": "Tilt",
     "secretPath": "secrets.y-orientation.key"
 }
