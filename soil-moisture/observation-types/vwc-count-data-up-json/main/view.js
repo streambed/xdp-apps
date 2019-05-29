@@ -6,10 +6,10 @@ function(endDevice, latestObservation) {
       vwc: {
         value: latestObservation.data.vwcCount,
         name: 'vwcCount',
-        text: latestObservation.data.vwcCount + ' %',
-        color: latestObservation.data.vwcCount < 50 ? 'danger' : 'success',
+        text: latestObservation.data.vwcCount,
+        color: latestObservation.data.vwcCount > 3000 ? 'danger' : 'success',
         scaleMin: 0,
-        scaleMax: 100
+        scaleMax: 5000
       }
     }
   };
