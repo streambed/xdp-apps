@@ -30,7 +30,7 @@ Atmospheric Pressure
 streambed observation-type add atmospheric-pressure-data-up-json \
   --name 'Atmospheric Pressure' \
   --secret-path secrets.atmospheric-pressure.key \
-  --view - < ./observation-types/atmospheric-pressure-data-up-json/main/view.js
+  --view - < ../atmospheric-pressure/observation-types/atmospheric-pressure/view.js
 ```
 
 X Orientation
@@ -38,7 +38,7 @@ X Orientation
 streambed observation-type add x-orientation-data-up-json \
   --name 'X Orientation' \
   --secret-path secrets.x-orientation.key \
-  --view - < ./observation-types/x-orientation-data-up-json/main/view.js
+  --view - < ../atmospheric-pressure/observation-types/x-orientation/view.js
 ```
 
 Y Orientation
@@ -46,7 +46,7 @@ Y Orientation
 streambed observation-type add y-orientation-data-up-json \
   --name 'Y Orientation' \
   --secret-path secrets.y-orientation.key \
-  --view - < ./observation-types/y-orientation-data-up-json/main/view.js
+  --view - < ../atmospheric-pressure/observation-types/y-orientation/view.js
 ```
 
 Solar:
@@ -54,7 +54,7 @@ Solar:
 streambed observation-type add solar-data-up-json \
   --name 'Solar' \
   --secret-path secrets.solar.key \
-  --view - < ./observation-types/solar-data-up-json/main/view.js
+  --view - < ../solar/observation-types/solar/view.js
 ```
 
 Precipitation
@@ -70,7 +70,7 @@ Strikes
 streambed observation-type add strikes-data-up-json \
   --name 'Strike' \
   --secret-path secrets.strikes.key \
-  --view - < ./observation-types/strikes-data-up-json/main/view.js
+  --view - < ../strikes/observation-types/strikes/view.js
 ```
 
 Strike Distance
@@ -78,7 +78,7 @@ Strike Distance
 streambed observation-type add strike-distance-data-up-json \
   --name 'Strike Distance' \
   --secret-path secrets.strike-distance.key \
-  --view - < ./observation-types/strike-distance-data-up-json/main/view.js
+  --view - < ../strikes/observation-types/strike-distance/view.js
 ```
 
 Wind Speed
@@ -86,7 +86,7 @@ Wind Speed
 streambed observation-type add wind-speed-data-up-json \
   --name 'Wind Speed' \
   --secret-path secrets.wind-speed.key \
-  --view - < ./observation-types/wind-speed-data-up-json/main/view.js
+  --view - < ../wind-speed/observation-types/wind-speed/view.js
 ```
 
 Wind Direction
@@ -94,7 +94,7 @@ Wind Direction
 streambed observation-type add wind-direction-data-up-json \
   --name 'Wind Direction' \
   --secret-path secrets.wind-direction.key \
-  --view - < ./observation-types/wind-direction-data-up-json/main/view.js
+  --view - < ../wind-speed/observation-types/wind-direction/view.js
 
 ```
 
@@ -103,7 +103,7 @@ Gust Speed
 streambed observation-type add gust-speed-data-up-json \
   --name 'Gust Speed' \
   --secret-path secrets.gust-speed.key \
-  --view - < ./observation-types/gust-speed-data-up-json/main/view.js
+  --view - < ../wind-speed/observation-types/gust-speed/view.js
 ```
 
 Air Temperature
@@ -111,21 +111,21 @@ Air Temperature
 streambed observation-type add air-temp-data-up-json \
   --name 'Air Temperature' \
   --secret-path secrets.air-temp.key \
-  --view - < ./observation-types/air-temp-data-up-json/main/view.js
+  --view - < ../air-condition/observation-types/air-temp/view.js
 ```
 Vapour Pressure
 ```
 streambed observation-type add vapour-pressure-data-up-json \
   --name 'Vapour Pressure' \
   --secret-path secrets.vapour-pressure.key \
-  --view - < ./observation-types/vapour-pressure-data-up-json/main/view.js
+  --view - < ../air-condition/observation-types/vapour-pressure/view.js
 ```
 Relative Humidity
 ```
 streambed observation-type add relative-humidity-data-up-json \
   --name 'Relative Humidity' \
   --secret-path secrets.relative-humidity.key \
-  --view - < ./observation-types/relative-humidity-data-up-json/main/view.js
+  --view - < ../air-condition/observation-types/relative-humidityg/view.js
 ```
 
 ## Add secrets for encrypt transformed observations
@@ -179,22 +179,22 @@ streambed mqtt add down \
 ## Adding dashboards
 Wind Speed Dashboard
 ```
-streambed dashboard add --name 'Wind Speed' --source - < ./dashboards/wind-speed/main/source.js
+streambed dashboard add --name 'Wind Speed' --source - < ../wind-speed/dashboards/main/source.js
 ```
 
 Strikes Dashboard
 ```
-streambed dashboard add --name 'Strikes' --source - < ./dashboards/strikes/main/source.js
+streambed dashboard add --name 'Strikes' --source - < ../strikes/dashboards/main/source.js
 ```
 
 Air Condition Dashboard
 ```
-streambed dashboard add --name 'Air Condition' --source - < ./dashboards/air-condition/main/source.js
+streambed dashboard add --name 'Air Condition' --source - < ../air-condition/dashboards/main/source.js
 ```
 
 Atmospheric Pressure Dashboard
 ```
-streambed dashboard add --name 'Atmospheric Pressure' --source - < ./dashboards/atmospheric-pressure/main/source.js
+streambed dashboard add --name 'Atmospheric Pressure' --source - < ../atmospheric-pressure/dashboards/main/source.js
 ```
 
 Precipitation Dashboard
@@ -204,7 +204,7 @@ streambed dashboard add --name 'Rain Gauges' --source - < ../rain-gauge/dashboar
 
 Solar Dashboard
 ```
-streambed dashboard add --name 'Solar' --source - < ./dashboards/solar/main/source.js
+streambed dashboard add --name 'Solar' --source - < ../solar/dashboards/main/source.js
 ```
 ## Viewing the Dashboard
 
