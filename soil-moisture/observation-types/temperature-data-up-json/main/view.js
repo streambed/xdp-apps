@@ -6,7 +6,7 @@ function(endDevice, latestObservation) {
       temperature: {
         value: latestObservation.data.temperature,
         name: 'temperature',
-        text: latestObservation.data.temperature + ' °C',
+        text: latestObservation.data.temperature.toFixed(2) + ' °C',
         color: latestObservation.data.temperature > 50 ? 'danger' : 'success',
         scaleMin: 0,
         scaleMax: 100
