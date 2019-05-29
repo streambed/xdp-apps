@@ -1,15 +1,15 @@
 function(endDevice, latestObservation) {
   return {
-    observationsMapValue: 'atmosphericPressure',
-    observationsMapGauge: 'atmosphericPressure',
+    observationsMapValue: 'barometricPressure',
+    observationsMapGauge: 'barometricPressure',
     fields: {
-      atmosphericPressure: {
-        value: latestObservation.data.atmosphericPressure,
-        name: 'AtmosphericPressure',
-        text: latestObservation.data.atmosphericPressure.toFixed(2) + ' kPa',
-        color: latestObservation.data.atmosphericPressure > 700 ? 'danger' : 'success',
-        scaleMin: 0,
-        scaleMax: 1000
+      barometricPressure: {
+        value: latestObservation.data.barometricPressure,
+        name: 'barometricPressure',
+        text: latestObservation.data.barometricPressure.toFixed(2) + ' kPa',
+        color: latestObservation.data.barometricPressure > 90 ? 'danger' : 'success',
+        scaleMin: 50,
+        scaleMax: 110
       }
     }
   };

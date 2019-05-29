@@ -10,7 +10,7 @@ streambed login admin
 lora type add weather-station-data-up-mac-payload "ICT Weather Station"
 
 # Add observation types.
-streambed observation-type add atmospheric-pressure-data-up-json \
+streambed observation-type add barometric-pressure-data-up-json \
   --name 'Barometric Pressure' \
   --secret-path secrets.barometric-pressure.key \
   --view - < ../barometric-pressure/observation-types/barometric-pressure/view.js
@@ -35,15 +35,15 @@ streambed observation-type add rain-gauge-data-up-json \
   --secret-path secrets.rain-gauge.key \
   --view - < ../rain-gauge/observation-types/main/view.js
 
-streambed observation-type add strikes-data-up-json \
-  --name 'Strike' \
-  --secret-path secrets.strikes.key \
-  --view - < ../strikes/observation-types/strikes/view.js
+streambed observation-type add lightning-strikes-data-up-json \
+  --name 'Lightning Strikes' \
+  --secret-path secrets.lightning-strikes.key \
+  --view - < ../lightning-strikes/observation-types/lightning-strikes/view.js
 
-streambed observation-type add strike-distance-data-up-json \
-  --name 'Strike Distance' \
-  --secret-path secrets.strike-distance.key \
-  --view - < ../strikes/observation-types/strike-distance/view.js
+streambed observation-type add lightning-strike-distance-data-up-json \
+  --name 'Lightning Strike Distance' \
+  --secret-path secrets.lightning-strike-distance.key \
+  --view - < ../lightning-strikes/observation-types/lightning-strike-distance/view.js
 
 streambed observation-type add wind-speed-data-up-json \
   --name 'Wind Speed' \
@@ -81,8 +81,8 @@ streambed secret add secrets.x-orientation.key 3B7E151628AED2A6ABF7158809CF4F3D
 streambed secret add secrets.y-orientation.key 3B7E151628AED2A6ABF7158809CF4F3D
 streambed secret add secrets.solar-radiation.key 3B7E151628AED2A6ABF7158809CF4F3D
 streambed secret add secrets.rain-gauge.key 3B7E151628AED2A6ABF7158809CF4F3D
-streambed secret add secrets.strikes.key 3B7E151628AED2A6ABF7158809CF4F3D
-streambed secret add secrets.strike-distance.key 3B7E151628AED2A6ABF7158809CF4F3D
+streambed secret add secrets.lightning-strikes.key 3B7E151628AED2A6ABF7158809CF4F3D
+streambed secret add secrets.lightning-strike-distance.key 3B7E151628AED2A6ABF7158809CF4F3D
 streambed secret add secrets.wind-speed.key 3B7E151628AED2A6ABF7158809CF4F3D
 streambed secret add secrets.wind-direction.key 3B7E151628AED2A6ABF7158809CF4F3D
 streambed secret add secrets.gust-speed.key 3B7E151628AED2A6ABF7158809CF4F3D
@@ -103,7 +103,7 @@ lora end-device add weather-station-data-up-mac-payload v1 abp \
 streambed transformer add \
   --name 'ICT Weather Station Transformer' \
   --inlet-topic weather-station-data-up-mac-payload \
-  --outlet-topic atmospheric-pressure-data-up-json x-orientation-data-up-json y-orientation-data-up-json solar-radiation-data-up-json rain-gauge-data-up-json strikes-data-up-json strike-distance-data-up-json wind-speed-data-up-json wind-direction-data-up-json gust-speed-data-up-json air-temp-data-up-json vapour-pressure-data-up-json relative-humidity-data-up-json \
+  --outlet-topic atmospheric-pressure-data-up-json x-orientation-data-up-json y-orientation-data-up-json solar-radiation-data-up-json rain-gauge-data-up-json lightning-strikes-data-up-json lightning-strike-distance-data-up-json wind-speed-data-up-json wind-direction-data-up-json gust-speed-data-up-json air-temp-data-up-json vapour-pressure-data-up-json relative-humidity-data-up-json \
   --source - < ./transformers/main/source.js
 
 # Add MQTT.
@@ -115,7 +115,7 @@ streambed mqtt add down \
 
 # Add dashboards.
 streambed dashboard add --name 'Wind Speed' --source - < ../wind-speed/dashboards/main/source.js
-streambed dashboard add --name 'Strikes' --source - < ../strikes/dashboards/main/source.js
+streambed dashboard add --name 'Lightning Strikes' --source - < ../lightning-strikes/dashboards/main/source.js
 streambed dashboard add --name 'Air Conditions' --source - < ../air-conditions/dashboards/main/source.js
 streambed dashboard add --name 'Barometric Pressure' --source - < ../barometric-pressure/dashboards/main/source.js
 streambed dashboard add --name 'Rain Gauges' --source - < ../rain-gauge/dashboards/main/source.js

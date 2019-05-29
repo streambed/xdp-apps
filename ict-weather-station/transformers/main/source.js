@@ -5,13 +5,13 @@
  * ****************************************************************************/
 
 // OUTLET DEFINITIONS:
-var ATMOSPHERIC_PRESSURE = 0;
+var BAROMETRIC_PRESSURE = 0;
 var X_ORIENTATION = 1;
 var Y_ORIENTATION = 2;
 var SOLAR_RADIATION = 3;
 var RAIN_GAUGE = 4;
-var STRIKE = 5;
-var STRIKE_DISTANCE = 6;
+var LIGHTNING_STRIKES = 5;
+var LIGHTNING_STRIKE_DISTANCE = 6;
 var WIND_SPEED = 7;
 var WIND_DIRECTION = 8;
 var GUST_SPEED = 9;
@@ -78,8 +78,8 @@ function transform(time, nwkAddr, fPort, base64_payload) {
      atmosphericPressure, xOrientation, yOrientation */
   if (commandFlag === 1) {
     decoded.push (
-      {outlet: ATMOSPHERIC_PRESSURE, data: {time: time, nwkAddr: nwkAddr, 
-        atmosphericPressure: decodeFloat(payload, 10, 14)}},
+      {outlet: BAROMETRIC_PRESSURE, data: {time: time, nwkAddr: nwkAddr, 
+        barometricPressure: decodeFloat(payload, 10, 14)}},
       {outlet: X_ORIENTATION, data: {time: time, nwkAddr: nwkAddr, 
         xOrientation: decodeFloat(payload, 14, 18)}},
       {outlet: Y_ORIENTATION, data: {time: time, nwkAddr: nwkAddr, 
@@ -95,10 +95,10 @@ function transform(time, nwkAddr, fPort, base64_payload) {
         solarRadiation: decodeFloat(payload, 10, 14)}},
       {outlet: RAIN_GAUGE, data: {time: time, nwkAddr: nwkAddr, 
         level: decodeFloat(payload, 14, 18)}},
-      {outlet: STRIKE, data: {time: time, nwkAddr: nwkAddr, 
-        strikes: decodeFloat(payload, 18, 22)}},
-      {outlet: STRIKE_DISTANCE, data: {time: time, nwkAddr: nwkAddr, 
-        strikeDistance: decodeFloat(payload, 22, 26)}},
+      {outlet: LIGHTNING_STRIKES, data: {time: time, nwkAddr: nwkAddr, 
+        lightningStrikes: decodeFloat(payload, 18, 22)}},
+      {outlet: LIGHTNING_STRIKE_DISTANCE, data: {time: time, nwkAddr: nwkAddr, 
+        lightningStrikeDistance: decodeFloat(payload, 22, 26)}},
       {outlet: WIND_SPEED, data: {time: time, nwkAddr: nwkAddr, 
         windSpeed: decodeFloat(payload, 26, 30)}},
       {outlet: WIND_DIRECTION, data: {time: time, nwkAddr: nwkAddr, 
@@ -123,14 +123,14 @@ function test() {
   var result2 = transform("2019-03-30T12:05:07.123Z", 12345, 14, payload2);
   return (
     result1.length === 3 &&
-    result1[0].data.atmosphericPressure === 102.13999938964844 &&
+    result1[0].data.barometricPressure === 102.13999938964844 &&
     result1[1].data.xOrientation === 87.5999984741211 &&
     result1[2].data.yOrientation === -86.19999694824219 &&
     result2.length === 10 &&
   	result2[0].data.solarRadiation === 102.13999938964844 &&
     result2[1].data.level === 87.5999984741211 &&
-    result2[2].data.strikes ===  -86.19999694824219 &&
-    result2[3].data.strikeDistance === 102.13999938964844 &&
+    result2[2].data.lightningStrikes ===  -86.19999694824219 &&
+    result2[3].data.lightningStrikeDistance === 102.13999938964844 &&
     result2[4].data.windSpeed === 87.5999984741211 &&
     result2[5].data.windDirection === -86.19999694824219 &&
     result2[6].data.gustSpeed === 102.13999938964844 &&
