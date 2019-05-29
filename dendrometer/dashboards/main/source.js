@@ -2,7 +2,7 @@ function() {
   return {
     panels: {
       latestStemDiameter: {
-        title: 'Stem Diameter',
+        title: 'Latest Stem Diameter',
         type: 'ObservationBarChartCard',
         data: {
           topic: 'stem-diameter-data-up-json',
