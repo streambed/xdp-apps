@@ -7,9 +7,9 @@ function(endDevice, latestObservation) {
         value: latestObservation.data.EC,
         name: 'EC',
         text: latestObservation.data.EC + ' mS/m',,
-        color: latestObservation.data.EC > 5000 ? 'danger' : 'success',
+        color: latestObservation.data.EC > 50 ? 'danger' : 'success',
         scaleMin: 0,
-        scaleMax: 5000
+        scaleMax: 100
       }
     }
   };
