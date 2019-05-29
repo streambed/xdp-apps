@@ -1,5 +1,0 @@
-{
-    "topic": "precipitation-data-up-json",
-    "name": "Precipitation",
-    "secretPath": "secrets.precipitation.key"
-}

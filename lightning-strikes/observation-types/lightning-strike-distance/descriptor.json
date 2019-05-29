@@ -1,0 +1,5 @@
+{
+    "topic": "lightning-strike-distance-data-up-json",
+    "name": "Lightning Strike Distance",
+    "secretPath": "secrets.lightning-strike-distance.key"
+}

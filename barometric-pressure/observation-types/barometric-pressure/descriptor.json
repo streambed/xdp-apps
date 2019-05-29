@@ -1,0 +1,5 @@
+{
+    "topic": "barometric-pressure-data-up-json",
+    "name": "Barometric Pressure",
+    "secretPath": "secrets.barometric-pressure.key"
+}
