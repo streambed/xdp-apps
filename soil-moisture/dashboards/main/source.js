@@ -2,7 +2,7 @@ function() {
   return {
     panels: {
       latestVwcCount: {
-        title: 'Latest VWC Count',
+        title: 'Latest GWC',
         type: 'ObservationBarChartCard',
         data: {
           topic: 'vwc-count-data-up-json',
@@ -10,7 +10,7 @@ function() {
         }
       },
       historicalVwcCount: {
-        title: 'VWC Count History',
+        title: 'GWC History',
         type: 'ObservationTimeSeriesCard',
         data: {
           topic: 'vwc-count-data-up-json',
