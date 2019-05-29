@@ -34,7 +34,7 @@ function() {
         }
       },
       latestTemperature: {
-        title: 'Latest Temperature',
+        title: 'Latest Soil Temperature',
         type: 'ObservationBarChartCard',
         data: {
           topic: 'temperature-data-up-json',
@@ -42,7 +42,7 @@ function() {
         }
       },
       historicalTemperature: {
-        title: 'Temperature History',
+        title: 'Soil Temperature History',
         type: 'ObservationTimeSeriesCard',
         data: {
           topic: 'temperature-data-up-json',
@@ -50,7 +50,7 @@ function() {
         }
       },
       latestEC: {
-        title: 'Latest EC',
+        title: 'Latest Soil EC',
         type: 'ObservationBarChartCard',
         data: {
           topic: 'ec-data-up-json',
@@ -58,7 +58,7 @@ function() {
         }
       },
       historicalEC: {
-        title: 'EC History',
+        title: 'Soil EC History',
         type: 'ObservationTimeSeriesCard',
         data: {
           topic: 'ec-data-up-json',
