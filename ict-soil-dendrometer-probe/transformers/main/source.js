@@ -72,17 +72,22 @@ function assert(condition, message) {
     throw message; // Fallback
   }
 }
-/**
- * Tests for the two possible payloads depending on command flag.
- */
-function test() {
-  // Dendrometer payload for command = 0;
+function runDendrometerTests() {
   var payload_0 = "AAAHMRBqLy8BAELMR65CrzMz"; 
   var result_0 = transform("2019-03-29T06:02:04.539Z", 65959, 15, payload_0);
   assert (result_0[STEM_DIAMETER].data.stemDiameter === 102.138671875, 
     'Expected stem diameter = 102.138671875');
   assert (result_0[STEM_TEMPERATURE].data.stemTemperature === 87.599609375, 
     'Expected stem tempreature = 87.599609375');
+  console.log('Dendrometer Tests passed')
+}
+
+/**
+ * Tests for the two possible payloads depending on command flag.
+ */
+function test() {
+  // Dendrometer payload for command = 0;
+  runDendrometerTests();
     
   // Soil moisture payload for command = 1;
   var payload_1 = "AAAHMRBqLy8BAULMR65CrzMzwqxmZg=="; 
