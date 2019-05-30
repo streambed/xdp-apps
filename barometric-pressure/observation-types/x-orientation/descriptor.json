@@ -1,0 +1,5 @@
+{
+    "topic": "x-orientation-data-up-json",
+    "name": "Compass Heading",
+    "secretPath": "secrets.x-orientation.key"
+}

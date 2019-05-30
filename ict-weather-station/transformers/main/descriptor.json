@@ -2,5 +2,5 @@
   "id": "7c17547d-d28a-4bf6-9f7d-586084f9381e",
   "name": "ICT Weather Station Transformer",
   "inlet": "weather-station-data-up-mac-payload",
-  "outlets": ["atmospheric-pressure-data-up-json", "x-orientation-data-up-json", "y-orientation-data-up-json", "solar-data-up-json", "rain-gauge-data-up-json", "strikes-data-up-json", "strike-distance-data-up-json", "wind-speed-data-up-json", "wind-direction-data-up-json", "gust-speed-data-up-json", "air-temp-data-up-json", "vapour-pressure-data-up-json", "relative-humidity-data-up-json"]
+  "outlets": ["barometric-pressure-data-up-json", "x-orientation-data-up-json", "y-orientation-data-up-json", "solar-radiation-data-up-json", "rain-gauge-data-up-json", "lightning-strikes-data-up-json", "lightning-strike-distance-data-up-json", "wind-speed-data-up-json", "wind-direction-data-up-json", "gust-speed-data-up-json", "air-temp-data-up-json", "vapour-pressure-data-up-json", "relative-humidity-data-up-json"]
 }
