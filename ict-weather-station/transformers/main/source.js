@@ -5,19 +5,19 @@
  * ****************************************************************************/
 
 // OUTLET DEFINITIONS:
-var ATMOSPHERIC_PRESSURE = 0;
-var X_ORIENTATION = 1;
-var Y_ORIENTATION = 2;
-var SOLAR = 3;
-var RAIN_GAUGE = 4;
-var STRIKE = 5;
-var STRIKE_DISTANCE = 6;
-var WIND_SPEED = 7;
-var WIND_DIRECTION = 8;
-var GUST_SPEED = 9;
-var AIR_TEMPERATURE = 10;
-var VAPOUR_PRESSURE = 11;
-var RELATIVE_HUMIDITY = 12;
+const ATMOSPHERIC_PRESSURE = 0;
+const X_ORIENTATION = 1;
+const Y_ORIENTATION = 2;
+const SOLAR = 3;
+const RAIN_GAUGE = 4;
+const STRIKE = 5;
+const STRIKE_DISTANCE = 6;
+const WIND_SPEED = 7;
+const WIND_DIRECTION = 8;
+const GUST_SPEED = 9;
+const AIR_TEMPERATURE = 10;
+const VAPOUR_PRESSURE = 11;
+const RELATIVE_HUMIDITY = 12;
 
 /**
  * Extracts bytes from byte_payload from start to end and converts these bytes 
@@ -29,19 +29,19 @@ var RELATIVE_HUMIDITY = 12;
  * @param {*} end ending byte index in payload.
  */
 function decodeFloat(byte_payload, start, end) {
-  // Extract bytes from payload, converting each byte into its unicode value
+  // Extract bytes from payload, converting each byte into its unicode value.
   var bytes = [];
   for(var i = start; i < end; i++) 
     bytes.push(byte_payload[i].charCodeAt(0));
 
-  // Convert bytes to a float
+  // Convert bytes to a float.
   var word = bytes[0]<<24 | bytes[1]<<16 | bytes[2]<<8 | bytes[3];
   var sign = (word>>>31 === 0) ? 1.0 : -1.0;
   var e = word>>>23 & 0xff;
   var m = (e === 0) ? (word & 0x7fffff)<<1 : (word & 0x7fffff) | 0x800000;
   var float = sign * m * Math.pow(2, e - 150);
 
-  // Return float in 2 decimal places
+  // Return float unrounded.
   return float;
 }  
 
@@ -54,43 +54,27 @@ function decodeFloat(byte_payload, start, end) {
  * @param {*} fPort determines which mode the packet will be read.
  * @param {*} base64_payload payload to be transformed.
  */
-
 function transform(time, nwkAddr, fPort, base64_payload) {
   var payload = atob(base64_payload);
   var commandFlag = payload[9].charCodeAt(0);
 
-  var decoded = [];
-  /* Header info, still in bytes form, should be converted to display on 
-      dashboard. Also, if using this code, make sure outlets for following data 
-      updated (below and in descriptor.js), and the above declared var decoded 
-      is deleted. */
-
-  // var decoded = [
-  //   {outlet: 0, data: {time: time, nwkAddr: nwkAddr, 
-  //     RTC: (payload[0]<<24 | payload[1]<<16 | payload[2]<<8 | payload[3])}},
-  //   {outlet: 1, data: {time: time, nwkAddr: nwkAddr, 
-  //     battery: ((payload[4]<<8 | payload[5])/1000)}},
-  //   {outlet: 2, data: {time: time, nwkAddr: nwkAddr, 
-  //     solar: ((payload[6]<<8 | payload[7])/1000)}},
-  // ];
-
   /* If command flag == 1, extract the following information:
      atmosphericPressure, xOrientation, yOrientation */
   if (commandFlag === 1) {
-    decoded.push (
+    return [
       {outlet: ATMOSPHERIC_PRESSURE, data: {time: time, nwkAddr: nwkAddr, 
         atmosphericPressure: decodeFloat(payload, 10, 14)}},
       {outlet: X_ORIENTATION, data: {time: time, nwkAddr: nwkAddr, 
         xOrientation: decodeFloat(payload, 14, 18)}},
       {outlet: Y_ORIENTATION, data: {time: time, nwkAddr: nwkAddr, 
         yOrientation: decodeFloat(payload, 18, 22)}}
-    );
+    ];
   } 
   /* If command flag == 0, extract the following information:
      solar, precipitation, strikes, strikeDistance, windSpeed, windDirection, 
      gustSpeed, airTemperature, vapourPressure, relativeHumidity */
   else {
-    decoded.push (
+    return [
       {outlet: SOLAR, data: {time: time, nwkAddr: nwkAddr, 
         solar: decodeFloat(payload, 10, 14)}},
       {outlet: RAIN_GAUGE, data: {time: time, nwkAddr: nwkAddr, 
@@ -111,9 +95,8 @@ function transform(time, nwkAddr, fPort, base64_payload) {
         vapourPressure: decodeFloat(payload, 42, 46)}},
       {outlet: RELATIVE_HUMIDITY, data: {time: time, nwkAddr: nwkAddr, 
         relativeHumidity: decodeFloat(payload, 46, 50)}}
-    );
+    ];
   }
-  return decoded;
 }
 
 function test() {
