@@ -1,0 +1,5 @@
+{
+	"topic": "soil-vwc-count-data-up-json",
+	"name": "Soil VWC Count",
+	"secretPath": "secrets.soil-dendrometer-vwc-count.key"
+}

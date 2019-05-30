@@ -1,0 +1,5 @@
+{
+	"topic": "soil-temperature-data-up-json",
+	"name": "Soil Temperature",
+	"secretPath": "secrets.soil-dendrometer-temperature.key"
+}
