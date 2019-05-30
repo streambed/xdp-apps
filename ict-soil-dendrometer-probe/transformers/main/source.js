@@ -83,22 +83,22 @@ function assert(condition, message) {
   }
 }
 // Dendrometer payload for command = 0.
-function runDendrometerTests() {
+function runTests0() {
   var payload_0 = "AAAHMRBqLy8BAELMR65CrzMz"; 
   var result_0 = transform("2019-03-29T06:02:04.539Z", 65959, 15, payload_0);
   assert (result_0.length === 2, 
-    'Expected array length = 2');
+    'Expected command 0 array length = 2');
   assert (result_0[STEM_DIAMETER].data.stemDiameter === 102.138671875, 
     'Expected stem diameter = 102.138671875');
   assert (result_0[STEM_TEMPERATURE].data.stemTemperature === 87.599609375, 
     'Expected stem tempreature = 87.599609375');
 }
 // Soil moisture payload for command = 1.
-function runSoilMoistureTests() {
+function runTests1() {
   var payload_1 = "AAAHMRBqLy8BAULMR65CrzMzwqxmZg=="; 
   var result_1 = transform("2019-03-29T06:02:04.539Z", 65959, 15, payload_1);
   assert(result_1.length === 4, 
-    'Expected array length = 4');
+    'Expected command 1 array length = 4');
   assert (result_1[VWC_COUNT - 2].data.vwcCount === 102.138671875, 
     'Expected vwcCount = 102.138671875');
   assert (result_1[TEMPERATURE - 2].data.temperature === 87.599609375, 
@@ -112,7 +112,7 @@ function runSoilMoistureTests() {
  * Tests for the two possible payloads types depending on command flag.
  */
 function test() {
-  runDendrometerTests();
-  runSoilMoistureTests(); 
+  runTests0();
+  runTests1(); 
   return true;
 }

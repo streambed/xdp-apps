@@ -103,50 +103,50 @@ function assert(condition, message) {
   }
 }
 // Weather readings payload for command = 0.
-function runWeatherTests() {
+function runTests0() {
   var payload0 = "AAAHMRBqLy8BAULMR65CrzMzwqxmZg==";
   var result0 = transform("2019-03-30T12:05:07.123Z", 12345, 14, payload0);
   assert(result0.length === 3, 
-    'Error, expecting array length = 3');
+    'Expected command 0 array length = 3');
   assert(result0[0].data.atmosphericPressure === 102.13999938964844, 
-    'Error, expecting atmospheric pressure = 102.13999938964844');
+    'Expected atmospheric pressure = 102.13999938964844');
   assert(result0[1].data.xOrientation === 87.5999984741211, 
-    'Error, expecting xOrientation = 87.5999984741211');
+    'Expected xOrientation = 87.5999984741211');
   assert(result0[2].data.yOrientation === -86.19999694824219, 
-    'Error, expecting yOrientation = -86.19999694824219');
+    'Expected yOrientation = -86.19999694824219');
 }
 // Barometer and compass readings payload for command = 1.
-function runBarometerCompassTests() {
+function runTests1() {
   var payload1 = "AAAHMRBqLy8BAELMR65CrzMzwqxmZkLMR65CrzMzwqxmZkLMR65CrzMzwqxmZkLMR64="
   var result1 = transform("2019-03-30T12:05:07.123Z", 12345, 14, payload1);
   assert(result1.length === 10, 
-    'Error, expecting array length = 10');
+    'Expected command 1 array length = 10');
   assert(result1[0].data.solar === 102.13999938964844,
-    'Error, expecting solar = 102.13999938964844');
+    'Expected solar = 102.13999938964844');
   assert(result1[1].data.level === 87.5999984741211,
-    'Error, expecting level = 87.5999984741211');
+    'Expected level = 87.5999984741211');
   assert(result1[2].data.strikes ===  -86.19999694824219,
-    'Error, expecting strikes = -86.19999694824219');
+    'Expected strikes = -86.19999694824219');
   assert(result1[3].data.strikeDistance === 102.13999938964844, 
-    'Error, expecting strike distance = 102.13999938964844');
+    'Expected strike distance = 102.13999938964844');
   assert(result1[4].data.windSpeed === 87.5999984741211,
-    'Error, expecting wind speed = 87.5999984741211');
+    'Expected wind speed = 87.5999984741211');
   assert(result1[5].data.windDirection === -86.19999694824219, 
-    'Error, expecting wind direction = -86.19999694824219');
+    'Expected wind direction = -86.19999694824219');
   assert(result1[6].data.gustSpeed === 102.13999938964844,
-    'Error, expecting gust speed = 102.13999938964844');
+    'Expected gust speed = 102.13999938964844');
   assert(result1[7].data.airTemperature === 87.5999984741211,
-    'Error, expecting air temperature = 87.5999984741211');
+    'Expected air temperature = 87.5999984741211');
   assert(result1[8].data.vapourPressure ===  -86.19999694824219,
-    'Error, expecting vapour pressure = -86.19999694824219');
+    'Expected vapour pressure = -86.19999694824219');
   assert(result1[9].data.relativeHumidity === 102.13999938964844,
-    'Error, expecting relative humidity = 102.13999938964844');
+    'Expected relative humidity = 102.13999938964844');
 }
 /**
  * Tests for the two possible payloads types depending on command flag.
  */
 function test() {
-  runWeatherTests();
-  runBarometerCompassTests();
-  return 'Tests Passed!'
+  runTests0();
+  runTests1();
+  return true;
 }
