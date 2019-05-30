@@ -52,7 +52,7 @@ lora end-device add soil-dendrometer-data-up-mac-payload v1 abp \
 streambed transformer add \
   --name 'My ICT Soil Moisture Dendrometer Transformer' \
   --inlet-topic soil-dendrometer-data-up-mac-payload \
-  --outlet-topic stem-diameter-data-up-json stem-temperature-data-up-json vwc-count-data-up-json temperature-data-up-json ec-data-up-json vwc-data-up-json \
+  --outlet-topic stem-diameter-data-up-json stem-temperature-data-up-json soil-vwc-count-data-up-json soil-temperature-data-up-json soil-ec-data-up-json soil-vwc-data-up-json \
   --source - < ./transformers/main/source.js
 
 streambed mqtt add down \
