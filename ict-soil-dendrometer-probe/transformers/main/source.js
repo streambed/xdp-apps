@@ -3,6 +3,8 @@
  *  Transformation code for ICT Dendrometer & Soil Moisture Probe 
  * 
  * ****************************************************************************/
+
+// OUTLET DEFINITIONS
 const STEM_DIAMETER = 0;
 const STEM_TEMPERATURE = 1;
 const VWC_COUNT = 2;
@@ -14,8 +16,12 @@ const VWC = 5;
  * Extracts bytes from byte_payload from start to end and converts these bytes 
  * into a float. Adapted from: 
  * https://www.thethingsnetwork.org/forum/t/decode-float-sent-by-lopy-as-node/8757/2
+ * 
+ * @param {*} byte_payload payload in bytes to be converted to float.
+ * @param {*} start starting byte index in payload.
+ * @param {*} end ending byte index in payload.
  */
-function extractFloat(byte_payload, start, end) {
+function decodeFloat(byte_payload, start, end) {
   // Extract bytes from payload, converting each byte into its unicode value
   var bytes = [];
   for(var i = start; i < end; i++) 
@@ -35,34 +41,38 @@ function extractFloat(byte_payload, start, end) {
 /**
  * Transforms base_64 payload into an array of objects, each specifying a
  * certain observation type.
+ * 
+ * @param {*} time time of receiving the payload.
+ * @param {*} nwkAddr network address of the end device.
+ * @param {*} fPort determines which mode the packet will be read.
+ * @param {*} base64_payload payload to be transformed.
  */
 function transform (time, nwkAddr, fPort, base64_payload) {
   var payload = atob(base64_payload);
   var commandFlag = payload[9].charCodeAt(0);
-  var decoded = [];
-  if (!commandFlag) {
-    decoded.push (
+  if (commandFlag === 0) {
+    return [
       {outlet: STEM_DIAMETER, data: {time: time, nwkAddr: nwkAddr, 
-        stemDiameter: extractFloat(payload, 10, 13)}},
+        stemDiameter: decodeFloat(payload, 10, 13)}},
       {outlet: STEM_TEMPERATURE, data: {time: time, nwkAddr: nwkAddr, 
-        stemTemperature: extractFloat(payload, 14, 17)}}
-    );
+        stemTemperature: decodeFloat(payload, 14, 17)}}
+    ];
   } else {
-    var vwcCount_decoded = extractFloat(payload, 10, 13);
-    decoded.push (
+    var vwcCount_decoded = decodeFloat(payload, 10, 13);
+    return [
       {outlet: VWC_COUNT, data: {time: time, nwkAddr: nwkAddr, 
         vwcCount: vwcCount_decoded}},
       {outlet: TEMPERATURE, data: {time: time, nwkAddr: nwkAddr, 
-        temperature: extractFloat(payload, 14, 17)}},
+        temperature: decodeFloat(payload, 14, 17)}},
       {outlet: EC, data: {time: time, nwkAddr: nwkAddr, 
-        EC: extractFloat(payload, 18, 21)}},
+        EC: decodeFloat(payload, 18, 21)}},
       {outlet: VWC, data: {time: time, nwkAddr: nwkAddr, 
         vwc: ((0.0003879 * vwcCount_decoded - 0.6956)*100)}}
-    );
+    ];
   }
-  return decoded;
 }
 
+// Helper function for tests.
 function assert(condition, message) {
   if (!condition) {
     message = message || "Assertion failed";
@@ -72,26 +82,23 @@ function assert(condition, message) {
     throw message; // Fallback
   }
 }
+// Dendrometer payload for command = 0.
 function runDendrometerTests() {
   var payload_0 = "AAAHMRBqLy8BAELMR65CrzMz"; 
   var result_0 = transform("2019-03-29T06:02:04.539Z", 65959, 15, payload_0);
+  assert (result_0.length === 2, 
+    'Expected array length = 2');
   assert (result_0[STEM_DIAMETER].data.stemDiameter === 102.138671875, 
     'Expected stem diameter = 102.138671875');
   assert (result_0[STEM_TEMPERATURE].data.stemTemperature === 87.599609375, 
     'Expected stem tempreature = 87.599609375');
-  console.log('Dendrometer Tests passed')
 }
-
-/**
- * Tests for the two possible payloads depending on command flag.
- */
-function test() {
-  // Dendrometer payload for command = 0;
-  runDendrometerTests();
-    
-  // Soil moisture payload for command = 1;
+// Soil moisture payload for command = 1.
+function runSoilMoistureTests() {
   var payload_1 = "AAAHMRBqLy8BAULMR65CrzMzwqxmZg=="; 
   var result_1 = transform("2019-03-29T06:02:04.539Z", 65959, 15, payload_1);
+  assert(result_1.length === 4, 
+    'Expected array length = 4');
   assert (result_1[VWC_COUNT - 2].data.vwcCount === 102.138671875, 
     'Expected vwcCount = 102.138671875');
   assert (result_1[TEMPERATURE - 2].data.temperature === 87.599609375, 
@@ -100,6 +107,12 @@ function test() {
     'Expected EC = -86.19921875');
   assert (result_1[VWC - 2].data.vwc === -65.59804091796875, 
     'Expected EC = -65.59804091796875');
-  
-  return 'Tests Passed!'
+}
+/**
+ * Tests for the two possible payloads types depending on command flag.
+ */
+function test() {
+  runDendrometerTests();
+  runSoilMoistureTests(); 
+  return true;
 }

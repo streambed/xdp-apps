@@ -57,23 +57,7 @@ function decodeFloat(byte_payload, start, end) {
 function transform(time, nwkAddr, fPort, base64_payload) {
   var payload = atob(base64_payload);
   var commandFlag = payload[9].charCodeAt(0);
-
-  /* If command flag == 1, extract the following information:
-     atmosphericPressure, xOrientation, yOrientation */
-  if (commandFlag === 1) {
-    return [
-      {outlet: ATMOSPHERIC_PRESSURE, data: {time: time, nwkAddr: nwkAddr, 
-        atmosphericPressure: decodeFloat(payload, 10, 14)}},
-      {outlet: X_ORIENTATION, data: {time: time, nwkAddr: nwkAddr, 
-        xOrientation: decodeFloat(payload, 14, 18)}},
-      {outlet: Y_ORIENTATION, data: {time: time, nwkAddr: nwkAddr, 
-        yOrientation: decodeFloat(payload, 18, 22)}}
-    ];
-  } 
-  /* If command flag == 0, extract the following information:
-     solar, precipitation, strikes, strikeDistance, windSpeed, windDirection, 
-     gustSpeed, airTemperature, vapourPressure, relativeHumidity */
-  else {
+  if (commandFlag === 0) {
     return [
       {outlet: SOLAR, data: {time: time, nwkAddr: nwkAddr, 
         solar: decodeFloat(payload, 10, 14)}},
@@ -96,29 +80,73 @@ function transform(time, nwkAddr, fPort, base64_payload) {
       {outlet: RELATIVE_HUMIDITY, data: {time: time, nwkAddr: nwkAddr, 
         relativeHumidity: decodeFloat(payload, 46, 50)}}
     ];
+  } else {
+    return [
+      {outlet: ATMOSPHERIC_PRESSURE, data: {time: time, nwkAddr: nwkAddr, 
+        atmosphericPressure: decodeFloat(payload, 10, 14)}},
+      {outlet: X_ORIENTATION, data: {time: time, nwkAddr: nwkAddr, 
+        xOrientation: decodeFloat(payload, 14, 18)}},
+      {outlet: Y_ORIENTATION, data: {time: time, nwkAddr: nwkAddr, 
+        yOrientation: decodeFloat(payload, 18, 22)}}
+    ];
   }
 }
 
+// Helper function for tests.
+function assert(condition, message) {
+  if (!condition) {
+    message = message || "Assertion failed";
+    if (typeof Error !== "undefined") {
+      throw new Error(message);
+    }
+    throw message; // Fallback
+  }
+}
+// Weather readings payload for command = 0.
+function runWeatherTests() {
+  var payload0 = "AAAHMRBqLy8BAULMR65CrzMzwqxmZg==";
+  var result0 = transform("2019-03-30T12:05:07.123Z", 12345, 14, payload0);
+  assert(result0.length === 3, 
+    'Error, expecting array length = 3');
+  assert(result0[0].data.atmosphericPressure === 102.13999938964844, 
+    'Error, expecting atmospheric pressure = 102.13999938964844');
+  assert(result0[1].data.xOrientation === 87.5999984741211, 
+    'Error, expecting xOrientation = 87.5999984741211');
+  assert(result0[2].data.yOrientation === -86.19999694824219, 
+    'Error, expecting yOrientation = -86.19999694824219');
+}
+// Barometer and compass readings payload for command = 1.
+function runBarometerCompassTests() {
+  var payload1 = "AAAHMRBqLy8BAELMR65CrzMzwqxmZkLMR65CrzMzwqxmZkLMR65CrzMzwqxmZkLMR64="
+  var result1 = transform("2019-03-30T12:05:07.123Z", 12345, 14, payload1);
+  assert(result1.length === 10, 
+    'Error, expecting array length = 10');
+  assert(result1[0].data.solar === 102.13999938964844,
+    'Error, expecting solar = 102.13999938964844');
+  assert(result1[1].data.level === 87.5999984741211,
+    'Error, expecting level = 87.5999984741211');
+  assert(result1[2].data.strikes ===  -86.19999694824219,
+    'Error, expecting strikes = -86.19999694824219');
+  assert(result1[3].data.strikeDistance === 102.13999938964844, 
+    'Error, expecting strike distance = 102.13999938964844');
+  assert(result1[4].data.windSpeed === 87.5999984741211,
+    'Error, expecting wind speed = 87.5999984741211');
+  assert(result1[5].data.windDirection === -86.19999694824219, 
+    'Error, expecting wind direction = -86.19999694824219');
+  assert(result1[6].data.gustSpeed === 102.13999938964844,
+    'Error, expecting gust speed = 102.13999938964844');
+  assert(result1[7].data.airTemperature === 87.5999984741211,
+    'Error, expecting air temperature = 87.5999984741211');
+  assert(result1[8].data.vapourPressure ===  -86.19999694824219,
+    'Error, expecting vapour pressure = -86.19999694824219');
+  assert(result1[9].data.relativeHumidity === 102.13999938964844,
+    'Error, expecting relative humidity = 102.13999938964844');
+}
+/**
+ * Tests for the two possible payloads types depending on command flag.
+ */
 function test() {
-  var payload1 = "AAAHMRBqLy8BAULMR65CrzMzwqxmZg==";
-  var payload2 = "AAAHMRBqLy8BAELMR65CrzMzwqxmZkLMR65CrzMzwqxmZkLMR65CrzMzwqxmZkLMR64="
-  var result1 = transform("2019-03-29T06:02:04.539Z", 65959, 15, payload1);
-  var result2 = transform("2019-03-30T12:05:07.123Z", 12345, 14, payload2);
-  return (
-    result1.length === 3 &&
-    result1[0].data.atmosphericPressure === 102.13999938964844 &&
-    result1[1].data.xOrientation === 87.5999984741211 &&
-    result1[2].data.yOrientation === -86.19999694824219 &&
-    result2.length === 10 &&
-  	result2[0].data.solar === 102.13999938964844 &&
-    result2[1].data.level === 87.5999984741211 &&
-    result2[2].data.strikes ===  -86.19999694824219 &&
-    result2[3].data.strikeDistance === 102.13999938964844 &&
-    result2[4].data.windSpeed === 87.5999984741211 &&
-    result2[5].data.windDirection === -86.19999694824219 &&
-    result2[6].data.gustSpeed === 102.13999938964844 &&
-    result2[7].data.airTemperature === 87.5999984741211 &&
-    result2[8].data.vapourPressure ===  -86.19999694824219 &&
-    result2[9].data.relativeHumidity === 102.13999938964844
-  );
+  runWeatherTests();
+  runBarometerCompassTests();
+  return 'Tests Passed!'
 }
