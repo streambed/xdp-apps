@@ -5,19 +5,19 @@
  * ****************************************************************************/
 
 // OUTLET DEFINITIONS:
-var BAROMETRIC_PRESSURE = 0;
-var X_ORIENTATION = 1;
-var Y_ORIENTATION = 2;
-var SOLAR_RADIATION = 3;
-var RAIN_GAUGE = 4;
-var LIGHTNING_STRIKES = 5;
-var LIGHTNING_STRIKE_DISTANCE = 6;
-var WIND_SPEED = 7;
-var WIND_DIRECTION = 8;
-var GUST_SPEED = 9;
-var AIR_TEMPERATURE = 10;
-var VAPOUR_PRESSURE = 11;
-var RELATIVE_HUMIDITY = 12;
+const BAROMETRIC_PRESSURE = 0;
+const X_ORIENTATION = 1;
+const Y_ORIENTATION = 2;
+const SOLAR_RADIATION = 3;
+const RAIN_GAUGE = 4;
+const LIGHTNING_STRIKES = 5;
+const LIGHTNING_STRIKE_DISTANCE = 6;
+const WIND_SPEED = 7;
+const WIND_DIRECTION = 8;
+const GUST_SPEED = 9;
+const AIR_TEMPERATURE = 10;
+const VAPOUR_PRESSURE = 11;
+const RELATIVE_HUMIDITY = 12;
 
 /**
  * Extracts bytes from byte_payload from start to end and converts these bytes 
@@ -29,19 +29,19 @@ var RELATIVE_HUMIDITY = 12;
  * @param {*} end ending byte index in payload.
  */
 function decodeFloat(byte_payload, start, end) {
-  // Extract bytes from payload, converting each byte into its unicode value
+  // Extract bytes from payload, converting each byte into its unicode value.
   var bytes = [];
   for(var i = start; i < end; i++) 
     bytes.push(byte_payload[i].charCodeAt(0));
 
-  // Convert bytes to a float
+  // Convert bytes to a float.
   var word = bytes[0]<<24 | bytes[1]<<16 | bytes[2]<<8 | bytes[3];
   var sign = (word>>>31 === 0) ? 1.0 : -1.0;
   var e = word>>>23 & 0xff;
   var m = (e === 0) ? (word & 0x7fffff)<<1 : (word & 0x7fffff) | 0x800000;
   var float = sign * m * Math.pow(2, e - 150);
 
-  // Return float in 2 decimal places
+  // Return float unrounded.
   return float;
 }  
 
@@ -54,43 +54,20 @@ function decodeFloat(byte_payload, start, end) {
  * @param {*} fPort determines which mode the packet will be read.
  * @param {*} base64_payload payload to be transformed.
  */
-
 function transform(time, nwkAddr, fPort, base64_payload) {
   var payload = atob(base64_payload);
   var commandFlag = payload[9].charCodeAt(0);
-
-  var decoded = [];
-  /* Header info, still in bytes form, should be converted to display on 
-      dashboard. Also, if using this code, make sure outlets for following data 
-      updated (below and in descriptor.js), and the above declared var decoded 
-      is deleted. */
-
-  // var decoded = [
-  //   {outlet: 0, data: {time: time, nwkAddr: nwkAddr, 
-  //     RTC: (payload[0]<<24 | payload[1]<<16 | payload[2]<<8 | payload[3])}},
-  //   {outlet: 1, data: {time: time, nwkAddr: nwkAddr, 
-  //     battery: ((payload[4]<<8 | payload[5])/1000)}},
-  //   {outlet: 2, data: {time: time, nwkAddr: nwkAddr, 
-  //     solar: ((payload[6]<<8 | payload[7])/1000)}},
-  // ];
-
-  /* If command flag == 1, extract the following information:
-     barometricPressure, xOrientation, yOrientation */
   if (commandFlag === 1) {
-    decoded.push (
+    return [
       {outlet: BAROMETRIC_PRESSURE, data: {time: time, nwkAddr: nwkAddr, 
         barometricPressure: decodeFloat(payload, 10, 14)}},
       {outlet: X_ORIENTATION, data: {time: time, nwkAddr: nwkAddr, 
         xOrientation: decodeFloat(payload, 14, 18)}},
       {outlet: Y_ORIENTATION, data: {time: time, nwkAddr: nwkAddr, 
         yOrientation: decodeFloat(payload, 18, 22)}}
-    );
-  } 
-  /* If command flag == 0, extract the following information:
-     solarRadiation, precipitation, lightningStrikes, lightningStrikeDistance, windSpeed, windDirection, 
-     gustSpeed, airTemperature, vapourPressure, relativeHumidity */
-  else {
-    decoded.push (
+    ];
+  } else {
+    return [
       {outlet: SOLAR_RADIATION, data: {time: time, nwkAddr: nwkAddr, 
         solarRadiation: decodeFloat(payload, 10, 14)}},
       {outlet: RAIN_GAUGE, data: {time: time, nwkAddr: nwkAddr, 
@@ -111,31 +88,65 @@ function transform(time, nwkAddr, fPort, base64_payload) {
         vapourPressure: decodeFloat(payload, 42, 46)}},
       {outlet: RELATIVE_HUMIDITY, data: {time: time, nwkAddr: nwkAddr, 
         relativeHumidity: decodeFloat(payload, 46, 50)}}
-    );
+    ];
   }
-  return decoded;
 }
 
+// Helper function for tests.
+function assert(condition, message) {
+  if (!condition) {
+    message = message || "Assertion failed";
+    if (typeof Error !== "undefined") {
+      throw new Error(message);
+    }
+    throw message; // Fallback
+  }
+}
+// Weather readings payload for command = 0.
+function runTests0() {
+  var payload0 = "AAAHMRBqLy8BAULMR65CrzMzwqxmZg==";
+  var result0 = transform("2019-03-30T12:05:07.123Z", 12345, 14, payload0);
+  assert(result0.length === 3, 
+    'Expected command 0 array length = 3');
+  assert(result0[BAROMETRIC_PRESSURE].data.barometricPressure === 102.13999938964844, 
+    'Expected atmospheric pressure = 102.13999938964844');
+  assert(result0[X_ORIENTATION].data.xOrientation === 87.5999984741211, 
+    'Expected xOrientation = 87.5999984741211');
+  assert(result0[Y_ORIENTATION].data.yOrientation === -86.19999694824219, 
+    'Expected yOrientation = -86.19999694824219');
+}
+// Barometer and compass readings payload for command = 1.
+function runTests1() {
+  var payload1 = "AAAHMRBqLy8BAELMR65CrzMzwqxmZkLMR65CrzMzwqxmZkLMR65CrzMzwqxmZkLMR64="
+  var result1 = transform("2019-03-30T12:05:07.123Z", 12345, 14, payload1);
+  assert(result1.length === 10, 
+    'Expected command 1 array length = 10');
+  assert(result1[SOLAR_RADIATION - 3].data.solarRadiation === 102.13999938964844,
+    'Expected solar = 102.13999938964844');
+  assert(result1[RAIN_GAUGE - 3].data.level === 87.5999984741211,
+    'Expected level = 87.5999984741211');
+  assert(result1[LIGHTNING_STRIKES - 3].data.lightningStrikes ===  -86.19999694824219,
+    'Expected strikes = -86.19999694824219');
+  assert(result1[LIGHTNING_STRIKE_DISTANCE - 3].data.lightningStrikeDistance === 102.13999938964844, 
+    'Expected strike distance = 102.13999938964844');
+  assert(result1[WIND_SPEED - 3].data.windSpeed === 87.5999984741211,
+    'Expected wind speed = 87.5999984741211');
+  assert(result1[WIND_DIRECTION - 3].data.windDirection === -86.19999694824219, 
+    'Expected wind direction = -86.19999694824219');
+  assert(result1[GUST_SPEED - 3].data.gustSpeed === 102.13999938964844,
+    'Expected gust speed = 102.13999938964844');
+  assert(result1[AIR_TEMPERATURE - 3].data.airTemperature === 87.5999984741211,
+    'Expected air temperature = 87.5999984741211');
+  assert(result1[VAPOUR_PRESSURE - 3].data.vapourPressure ===  -86.19999694824219,
+    'Expected vapour pressure = -86.19999694824219');
+  assert(result1[RELATIVE_HUMIDITY - 3].data.relativeHumidity === 102.13999938964844,
+    'Expected relative humidity = 102.13999938964844');
+}
+/**
+ * Tests for the two possible payloads types depending on command flag.
+ */
 function test() {
-  var payload1 = "AAAHMRBqLy8BAULMR65CrzMzwqxmZg==";
-  var payload2 = "AAAHMRBqLy8BAELMR65CrzMzwqxmZkLMR65CrzMzwqxmZkLMR65CrzMzwqxmZkLMR64="
-  var result1 = transform("2019-03-29T06:02:04.539Z", 65959, 15, payload1);
-  var result2 = transform("2019-03-30T12:05:07.123Z", 12345, 14, payload2);
-  return (
-    result1.length === 3 &&
-    result1[0].data.barometricPressure === 102.13999938964844 &&
-    result1[1].data.xOrientation === 87.5999984741211 &&
-    result1[2].data.yOrientation === -86.19999694824219 &&
-    result2.length === 10 &&
-  	result2[0].data.solarRadiation === 102.13999938964844 &&
-    result2[1].data.level === 87.5999984741211 &&
-    result2[2].data.lightningStrikes ===  -86.19999694824219 &&
-    result2[3].data.lightningStrikeDistance === 102.13999938964844 &&
-    result2[4].data.windSpeed === 87.5999984741211 &&
-    result2[5].data.windDirection === -86.19999694824219 &&
-    result2[6].data.gustSpeed === 102.13999938964844 &&
-    result2[7].data.airTemperature === 87.5999984741211 &&
-    result2[8].data.vapourPressure ===  -86.19999694824219 &&
-    result2[9].data.relativeHumidity === 102.13999938964844
-  );
+  runTests0();
+  runTests1();
+  return true;
 }

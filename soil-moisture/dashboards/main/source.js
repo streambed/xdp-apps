@@ -5,7 +5,7 @@ function() {
         title: 'Latest VWC',
         type: 'ObservationBarChartCard',
         data: {
-          topic: 'vwc-data-up-json',
+          topic: 'soil-vwc-data-up-json',
           field: 'vwc'
         }
       },
@@ -13,7 +13,7 @@ function() {
         title: 'VWC History',
         type: 'ObservationTimeSeriesCard',
         data: {
-          topic: 'vwc-data-up-json',
+          topic: 'soil-vwc-data-up-json',
           field: 'vwc'
         }
       },
@@ -21,7 +21,7 @@ function() {
         title: 'Latest Temperature',
         type: 'ObservationBarChartCard',
         data: {
-          topic: 'temperature-data-up-json',
+          topic: 'soil-temperature-data-up-json',
           field: 'temperature'
         }
       },
@@ -29,7 +29,7 @@ function() {
         title: 'Temperature History',
         type: 'ObservationTimeSeriesCard',
         data: {
-          topic: 'temperature-data-up-json',
+          topic: 'soil-temperature-data-up-json',
           field: 'temperature'
         }
       },
@@ -37,7 +37,7 @@ function() {
         title: 'Latest EC',
         type: 'ObservationBarChartCard',
         data: {
-          topic: 'ec-data-up-json',
+          topic: 'soil-ec-data-up-json',
           field: 'EC'
         }
       },
@@ -45,7 +45,7 @@ function() {
         title: 'EC History',
         type: 'ObservationTimeSeriesCard',
         data: {
-          topic: 'ec-data-up-json',
+          topic: 'soil-ec-data-up-json',
           field: 'EC'
         }
       },

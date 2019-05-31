@@ -1,0 +1,5 @@
+{
+	"topic": "stem-diameter-data-up-json",
+	"name": "Stem Diameter",
+	"secretPath": "secrets.soil-dendrometer-stem-diameter.key"
+}

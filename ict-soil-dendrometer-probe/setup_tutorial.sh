@@ -4,42 +4,42 @@ echo "Starting script to set up ICT Soil Moisture Dendrometer Probe with Streamb
 
 lora type add soil-dendrometer-data-up-mac-payload "ICT Soil Moisture and Dendrometer Station"
 
-streambed observation-type add vwc-count-data-up-json \
-  --name 'VWC Count Observations' \
-  --secret-path secrets.plant-vwc-count.key \
-  --view - < ../soil-moisture/observation-types/vwc-count-data-up-json/main/view.js
+streambed observation-type add soil-vwc-count-data-up-json \
+  --name 'Soil VWC Count' \
+  --secret-path secrets.soil-dendrometer-vwc-count.key \
+  --view - < ../soil-moisture/observation-types/soil-vwc-count/view.js
 
-streambed observation-type add temperature-data-up-json \
-  --name 'Temperature Observations' \
-  --secret-path secrets.plant-temperature.key \
-  --view - < ../soil-moisture/observation-types/temperature-data-up-json/main/view.js
+streambed observation-type add soil-temperature-data-up-json \
+  --name 'Soil Temperature' \
+  --secret-path secrets.soil-dendrometer-temperature.key \
+  --view - < ../soil-moisture/observation-types/soil-temperature/view.js
 
-streambed observation-type add ec-data-up-json \
-  --name 'EC Observations' \
-  --secret-path secrets.plant-ec.key \
-  --view - < ../soil-moisture/observation-types/ec-data-up-json/main/view.js
+streambed observation-type add soil-ec-data-up-json \
+  --name 'Soil Electrical Conductivity' \
+  --secret-path secrets.soil-dendrometer-ec.key \
+  --view - < ../soil-moisture/observation-types/soil-ec/view.js
 
-streambed observation-type add vwc-data-up-json \
-  --name 'VWC Observations' \
-  --secret-path secrets.plant-vwc.key \
-  --view - < ../soil-moisture/observation-types/vwc-data-up-json/main/view.js
+streambed observation-type add soil-vwc-data-up-json \
+  --name 'Soil VWC' \
+  --secret-path secrets.soil-dendrometer-vwc.key \
+  --view - < ../soil-moisture/observation-types/soil-vwc/view.js
 
 streambed observation-type add stem-diameter-data-up-json \
-  --name 'Stem Diameter Observations' \
-  --secret-path secrets.plant-stem-diameter.key \
-  --view - < ../dendrometer/observation-types/stem-diameter-data-up-json/main/view.js
+  --name 'Stem Diameter' \
+  --secret-path secrets.soil-dendrometer-stem-diameter.key \
+  --view - < ../dendrometer/observation-types/stem-diameter/view.js
 
 streambed observation-type add stem-temperature-data-up-json \
-  --name 'Stem Temperature Observations' \
-  --secret-path secrets.plant-stem-temperature.key \
-  --view - < ../dendrometer/observation-types/stem-temperature-data-up-json/main/view.js
+  --name 'Stem Temperature' \
+  --secret-path secrets.soil-dendrometer-stem-temperature.key \
+  --view - < ../dendrometer/observation-types/stem-temperature/view.js
 
-streambed secret add secrets.plant-vwc-count.key 3B7E151628AED2A6ABF7158809CF4F3A
-streambed secret add secrets.plant-temperature.key 3B7E151628AED2A6ABF7158809CF4F3A
-streambed secret add secrets.plant-ec.key 3B7E151628AED2A6ABF7158809CF4F3A
-streambed secret add secrets.plant-vwc.key 3B7E151628AED2A6ABF7158809CF4F3A
-streambed secret add secrets.plant-stem-diameter.key 3B7E151628AED2A6ABF7158809CF4F3A
-streambed secret add secrets.plant-stem-temperature.key 3B7E151628AED2A6ABF7158809CF4F3A
+streambed secret add secrets.soil-dendrometer-vwc-count.key 3B7E151628AED2A6ABF7158809CF4F3A
+streambed secret add secrets.soil-dendrometer-temperature.key 3B7E151628AED2A6ABF7158809CF4F3A
+streambed secret add secrets.soil-dendrometer-ec.key 3B7E151628AED2A6ABF7158809CF4F3A
+streambed secret add secrets.soil-dendrometer-vwc.key 3B7E151628AED2A6ABF7158809CF4F3A
+streambed secret add secrets.soil-dendrometer-stem-diameter.key 3B7E151628AED2A6ABF7158809CF4F3A
+streambed secret add secrets.soil-dendrometer-stem-temperature.key 3B7E151628AED2A6ABF7158809CF4F3A
 
 lora end-device add soil-dendrometer-data-up-mac-payload v1 abp \
   --dev-eui 0081C343189D832A \
@@ -52,7 +52,7 @@ lora end-device add soil-dendrometer-data-up-mac-payload v1 abp \
 streambed transformer add \
   --name 'My ICT Soil Moisture Dendrometer Transformer' \
   --inlet-topic soil-dendrometer-data-up-mac-payload \
-  --outlet-topic stem-diameter-data-up-json stem-temperature-data-up-json vwc-count-data-up-json temperature-data-up-json ec-data-up-json vwc-data-up-json \
+  --outlet-topic stem-diameter-data-up-json stem-temperature-data-up-json soil-vwc-count-data-up-json soil-temperature-data-up-json soil-ec-data-up-json soil-vwc-data-up-json \
   --source - < ./transformers/main/source.js
 
 streambed mqtt add down \
