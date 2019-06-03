@@ -1,5 +1,5 @@
 {
-  "id": "584fe212-1f10-4df7-b242-431c5f709793 ",
+  "id": "584fe212-1f10-4df7-b242-431c5f709793",
   "name": "Soil Moisture",
   "defaultTopics": ["soil-vwc-count-data-up-json", "soil-vwc-data-up-json", "soil-temperature-data-up-json", "soil-ec-data-up-json"]
 }
