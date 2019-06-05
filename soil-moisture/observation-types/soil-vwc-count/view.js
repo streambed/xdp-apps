@@ -3,10 +3,10 @@ function(endDevice, latestObservation) {
     observationsMapValue: 'vwcCount',
     observationsMapGauge: 'vwcCount',
     fields: {
-      vwc: {
+      vwcCount: {
         value: latestObservation.data.vwcCount,
         name: 'vwcCount',
-        text: latestObservation.data.vwcCount,
+        text: latestObservation.data.vwcCount.toFixed(2),
         color: latestObservation.data.vwcCount > 300 ? 'danger' : 'success',
         scaleMin: 0,
         scaleMax: 500
