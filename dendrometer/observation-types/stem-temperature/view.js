@@ -5,7 +5,7 @@ function(endDevice, latestObservation) {
     fields: {
       stemTemperature: {
         value: latestObservation.data.stemTemperature,
-        name: 'stemTemperature',
+        name: 'Stem Temperature',
         text: latestObservation.data.stemTemperature.toFixed(2) + ' °C',
         color: latestObservation.data.stemTemperature > 50 ? 'danger' : 'success',
         scaleMin: 0,

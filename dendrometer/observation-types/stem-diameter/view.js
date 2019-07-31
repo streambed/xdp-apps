@@ -5,7 +5,7 @@ function(endDevice, latestObservation) {
     fields: {
       stemDiameter: {
         value: latestObservation.data.stemDiameter,
-        name: 'stemDiameter',
+        name: 'Stem Diameter',
         text: latestObservation.data.stemDiameter.toFixed(2) + ' cm',
         color: latestObservation.data.stemDiameter > 150 ? 'danger' : 'success',
         scaleMin: 0,

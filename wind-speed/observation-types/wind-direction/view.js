@@ -6,7 +6,7 @@ function(endDevice, latestObservation) {
       windDirection: {
         value: latestObservation.data.windDirection,
         name: 'Wind Direction',
-        text: latestObservation.data.windDirection.toFixed(2) + ' deg',
+        text: latestObservation.data.windDirection.toFixed(2) + '°',
         scaleMin: -180,
         scaleMax: 180
       }

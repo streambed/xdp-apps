@@ -5,7 +5,7 @@ function(endDevice, latestObservation) {
     fields: {
       vapourPressure: {
         value: latestObservation.data.vapourPressure,
-        name: 'VapourPressure',
+        name: 'Vapour Pressure',
         text: latestObservation.data.vapourPressure.toFixed(2) + ' kPa',
         color: latestObservation.data.vapourPressure > 10 ? 'danger' : 'success',
         scaleMin: 0,

@@ -5,7 +5,7 @@ function(endDevice, latestObservation) {
     fields: {
       gustSpeed: {
         value: latestObservation.data.gustSpeed,
-        name: 'GustSpeed',
+        name: 'Gust Speed',
         text: latestObservation.data.gustSpeed.toFixed(2) + ' km/h',
         color: latestObservation.data.gustSpeed > 15 ? 'danger' : 'success',
         scaleMin: 0,

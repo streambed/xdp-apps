@@ -1,13 +1,13 @@
 function transform(time, nwkAddr, fPort, payload) {
-  var tipCountIntervalMs = 5 * 60 * 1000; // ms represented per bucket (byte of payload)
-  var tipBucketSize = 0.5;                // The volume represented by a tip bucket - in mm
+  const tipCountIntervalMs = 5 * 60 * 1000; // ms represented per bucket (byte of payload)
+  const tipBucketSize = 0.5;                // The volume represented by a tip bucket - in mm
   
-  var epochTimeMs = (new Date(time)).getTime();
-  var payloadBytes = atob(payload);
-  var tipCountSpanMs = 0;
-  var result = [];
+  const epochTimeMs = (new Date(time)).getTime();
+  const payloadBytes = atob(payload);
+  const tipCountSpanMs = 0;
+  const result = [];
   for (var i = payloadBytes.length - 1; i >= 0; --i) {
-    var observation = {
+    const observation = {
       outlet: 0,
       data: {
         time: (new Date(epochTimeMs - tipCountSpanMs)).toISOString(),
@@ -22,7 +22,7 @@ function transform(time, nwkAddr, fPort, payload) {
 }
 
 function test() {
-  var result = transform("2019-03-29T06:02:04.539Z", 65959, 15, "AAEAAgD/")
+  const result = transform("2019-03-29T06:02:04.539Z", 65959, 15, "AAEAAgD/")
   return (
     result.length===6 && 
     result[1].outlet===0 &&

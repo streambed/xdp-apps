@@ -5,7 +5,7 @@ function(endDevice, latestObservation) {
     fields: {
       barometricPressure: {
         value: latestObservation.data.barometricPressure,
-        name: 'barometricPressure',
+        name: 'Barometric Pressure',
         text: latestObservation.data.barometricPressure.toFixed(2) + ' kPa',
         color: latestObservation.data.barometricPressure > 90 ? 'danger' : 'success',
         scaleMin: 50,
