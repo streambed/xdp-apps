@@ -18,12 +18,9 @@ sandbox | docker-compose -p xdp-sandbox -f - up
 
 Now open up another terminal and run the following script:
 ```
-./setup_tutorial.sh
+sh ./setup_sandbox.sh
 ```
-Note, it may be necessary to modify permissions of the script first:
-```
-chmod +x setup_tutorial.sh
-```
+
 When prompted for authentication:
 ```
 username: admin

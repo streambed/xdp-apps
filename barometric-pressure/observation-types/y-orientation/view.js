@@ -6,7 +6,7 @@ function(endDevice, latestObservation) {
       yOrientation: {
         value: latestObservation.data.yOrientation,
         name: 'Tilt',
-        text: latestObservation.data.yOrientation.toFixed(2) + ' deg',
+        text: latestObservation.data.yOrientation.toFixed(2) + '°',
         color: latestObservation.data.yOrientation > 90 ? 'danger' : 'success',
         scaleMin: 0,
         scaleMax: 180

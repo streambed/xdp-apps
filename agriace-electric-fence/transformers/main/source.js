@@ -7,7 +7,7 @@ function transform(time, nwkAddr, fPort, payload) {
 }
 
 function test() {
-  var tests = {
+  const tests = {
     "voltage of 10": [
       transform("2019-03-29T06:02:04.539Z", 65959, 15, "MTA="),
       { time: "2019-03-29T06:02:04.539Z", nwkAddr: 65959, voltage: 10 }
@@ -19,7 +19,7 @@ function test() {
     ]
   };
 
-  var testFailures = Object
+  const testFailures = Object
     .keys(tests)
     .map(function(test) {
       return { name: test, actual: JSON.stringify(tests[test][0]), expected: JSON.stringify(tests[test][1]) };
