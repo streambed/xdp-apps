@@ -1,0 +1,5 @@
+{
+  "topic": "water-flow-data-up-json",
+  "name": "Water Flow",
+  "secretPath": "secrets.water-flow.key"
+}
