@@ -1,0 +1,6 @@
+{
+  "id": "D63265A3-10D0-4CDA-B111-BF58D96B67F9",
+  "name": "ICT Water Flow Transformer",
+  "inlet": "p-node-data-up-mac-payload",
+  "outlets": ["water-flow-data-up-json"]
+}
