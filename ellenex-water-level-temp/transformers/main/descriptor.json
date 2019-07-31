@@ -1,0 +1,6 @@
+{
+  "id": "BB7A81C4-2991-4538-A113-F20D5A39ABCB",
+  "name": "Ellenex Water Pressure/Temp Sensor",
+  "inlet": "ellenex-pt-data-up-mac-payload",
+  "outlets": ["waterstate-data-up-json"]
+}
