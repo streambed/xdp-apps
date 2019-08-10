@@ -1,0 +1,6 @@
+{
+  "id": "B692ADBC-8D07-4C3A-8806-938FA2AE7A41",
+  "name": "Ellenex Water Pressure/Temp Sensor 5m Cable",
+  "inlet": "ellenex-pt-5m-data-up-mac-payload",
+  "outlets": ["waterstate-data-up-json"]
+}
