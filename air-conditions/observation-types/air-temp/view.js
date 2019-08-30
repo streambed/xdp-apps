@@ -2,6 +2,7 @@ function(endDevice, latestObservation) {
   return {
     observationsMapValue: 'airTemperature',
     observationsMapGauge: 'airTemperature',
+    observationsMapWeight: 2,
     fields: {
       airTemperature: {
         value: latestObservation.data.airTemperature,

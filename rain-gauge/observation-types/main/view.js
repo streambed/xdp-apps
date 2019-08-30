@@ -12,6 +12,7 @@ function(endDevice, latestObservation) {
   return {
     observationsMapValue: 'level',
     observationsMapGauge: 'voltage',
+    observationsMapWeight: 1,
     fields: {
       level: {
         value: latestObservation.data.level,
