@@ -1,0 +1,5 @@
+{
+  "id": "D01288B6-8673-4B5B-AE72-D4F3BA67319F",
+  "name": "Water Pressure",
+  "defaultTopics": ["water-pressure-data-up-json"]
+}
