@@ -1,0 +1,6 @@
+{
+  "id": "A84D55AB-D187-4706-9000-3C931B7BC45E",
+  "name": "Ellenex Water Pressure Sensor 20barG",
+  "inlet": "ellenex-pt-20barg-data-up-mac-payload",
+  "outlets": ["water-pressure-data-up-json"]
+}
