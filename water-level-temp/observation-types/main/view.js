@@ -24,7 +24,7 @@ function(endDevice, latestObservation) {
         text: latestObservation.data.height.toFixed(0) + 'mm',
         color: color,
         scaleMin: 0,
-        scaleMax: 5500
+        scaleMax: 3500
       },
       temperature: {
         value: latestObservation.data.temperature,
