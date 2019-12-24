@@ -19,20 +19,16 @@ function(endDevice, latestObservation) {
     observationsMapGauge: 'temperature',
     fields: {
       height: {
-        value: latestObservation.data.height,
+        value: latestObservation.data.height.toFixed(0),
         name: 'Height',
         text: latestObservation.data.height.toFixed(0) + 'mm',
-        color: color,
-        scaleMin: 0,
-        scaleMax: 3500
+        color: color
       },
       temperature: {
-        value: latestObservation.data.temperature,
+        value: latestObservation.data.temperature.toFixed(1),
         name: 'Temperature',
         text: latestObservation.data.temperature.toFixed(1) + '°C',
-        color: tempColor,
-        scaleMin: 0,
-        scaleMax: 50
+        color: tempColor
       }
     }
   };
