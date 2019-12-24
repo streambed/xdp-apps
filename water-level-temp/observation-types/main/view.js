@@ -22,13 +22,17 @@ function(endDevice, latestObservation) {
         value: latestObservation.data.height.toFixed(0),
         name: 'Height',
         text: latestObservation.data.height.toFixed(0) + 'mm',
-        color: color
+        color: color,
+        scaleMin: 0,	
+        scaleMax: 2000
       },
       temperature: {
         value: latestObservation.data.temperature.toFixed(1),
         name: 'Temperature',
         text: latestObservation.data.temperature.toFixed(1) + '°C',
-        color: tempColor
+        color: tempColor,
+        scaleMin: 0,	
+        scaleMax: 50
       }
     }
   };
