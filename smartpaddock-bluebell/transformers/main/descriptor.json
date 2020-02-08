@@ -1,0 +1,6 @@
+{
+  "id": "ba9ffd78-832a-477e-9d85-6224e8863882",
+  "name": "Smart Paddock Bluebell prototype",
+  "inlet": "smartpaddock-bb-proto-data-up-mac-payload",
+  "outlets": ["cattle-movement-data-up-json"]
+}
