@@ -1,0 +1,5 @@
+{
+  "topic": "cattle-movement-data-up-json",
+  "name": "Cattle movement",
+  "secretPath": "secrets.cattle-movement.key"
+}
