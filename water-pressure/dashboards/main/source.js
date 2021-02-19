@@ -9,7 +9,7 @@ function() {
             field: 'pressure',
             plotType: 'area',
             aggregate: function(topic, observations) {
-              let minPressure = 0.0;
+              let minPressure = undefined;
               for (let i = observations.length - 1; i >= 0; --i) {
                 const o = observations[i];
                 if (typeof o.pressure === 'number' && o.pressure >= 0.0 && o.pressure < 100000000.0) {
