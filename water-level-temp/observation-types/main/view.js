@@ -19,19 +19,19 @@ function(endDevice, latestObservation) {
     observationsMapGauge: 'temperature',
     fields: {
       height: {
-        value: Math.round(latestObservation.data.height * 10 ) / 10,
+        value: Math.round(latestObservation.data.height * 10) / 10,
         name: 'Height',
         text: latestObservation.data.height.toFixed(0) + 'mm',
         color: color,
-        scaleMin: 0,	
-        scaleMax: 2000
+        scaleMin: 0,
+        scaleMax: 5500
       },
       temperature: {
-        value: Math.round(latestObservation.data.height * 100 ) / 100,
+        value: Math.round(latestObservation.data.height * 100) / 100,
         name: 'Temperature',
         text: latestObservation.data.temperature.toFixed(1) + '°C',
         color: tempColor,
-        scaleMin: 0,	
+        scaleMin: 0,
         scaleMax: 50
       }
     }

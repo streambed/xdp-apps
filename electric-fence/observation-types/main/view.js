@@ -19,7 +19,7 @@ function(endDevice, latestObservation) {
         text: latestObservation.data.voltage.toFixed(1) + ' kV',
         color: color,
         scaleMin: 0,
-        scaleMax: 6
+        scaleMax: 13
       }
     }
   };
