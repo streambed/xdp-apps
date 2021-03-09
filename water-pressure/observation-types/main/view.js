@@ -16,7 +16,7 @@ function(endDevice, latestObservation) {
         text: latestObservation.data.pressure.toFixed(0) + 'bar',
         color: color,
         scaleMin: 0,
-        scaleMax: 20
+        scaleMax: 5
       }
     }
   };
