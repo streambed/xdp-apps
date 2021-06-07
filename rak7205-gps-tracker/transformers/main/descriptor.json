@@ -1,0 +1,8 @@
+{
+  "id": "2838B7D3-8884-4637-A64C-F1D10BC4C7F8",
+  "name": "RAK-7205 GPS Tracker + Environment Sensor",
+  "inlet": "rak7205-data-up-mac-payload",
+  "outlets": [
+    "gps-movement-data-up-json"
+  ]
+}
