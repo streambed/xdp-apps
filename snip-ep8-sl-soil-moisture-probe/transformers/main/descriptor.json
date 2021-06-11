@@ -1,0 +1,9 @@
+{
+  "id": "305A8524-D81D-48EC-B244-8E182B15405B",
+  "name": "ICT 8 Level Soil Moisture Probe Transformer",
+  "inlet": "snip-ep8-sl-data-up-mac-payload",
+  "outlets": [
+    "multi-soil-moisture-data-up-json",
+    "multi-soil-temperature-data-up-json"
+  ]
+}
