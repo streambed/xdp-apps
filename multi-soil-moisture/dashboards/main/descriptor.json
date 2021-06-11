@@ -1,0 +1,5 @@
+{
+  "id": "21302D8B-8D93-4D20-B178-F42FFF1ECD79",
+  "name": "Multi-Level Soil Moisture",
+  "defaultTopics": ["multi-soil-moisture-data-up-json", "multi-soil-temperature-data-up-json"]
+}

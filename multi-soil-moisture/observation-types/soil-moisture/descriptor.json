@@ -1,0 +1,5 @@
+{
+	"topic": "multi-soil-moisture-data-up-json",
+	"name": "Multiple Soil Moistures",
+	"secretPath": "secrets.multi-soil-moisture.key"
+}
