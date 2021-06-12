@@ -1,4 +1,5 @@
 function(endDevice, latestObservation) {
+  const referenceTemperature = latestObservation.data.temperature[4].toFixed(2);
   return {
     observationsMapValue: 'temperature',
     observationsMapGauge: 'temperature',
@@ -6,10 +7,10 @@ function(endDevice, latestObservation) {
       temperature: {
         value: latestObservation.data.temperature,
         name: 'temperature',
-        text: latestObservation.data.temperature[4].toFixed(2) + ' °C',
-        color: latestObservation.data.temperature[4] > 60 ? 'danger' : 'success',
+        text: referenceTemperature + '°C',
+        color: 'success',
         scaleMin: 0,
-        scaleMax: 80
+        scaleMax: 50
       }
     }
   };

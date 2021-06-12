@@ -5,7 +5,7 @@ function() {
         title: 'Latest Moisture',
         type: 'ObservationCard',
         data: {
-          topic: 'multi-soil-temperature-data-up-json',
+          topic: 'multi-soil-moisture-data-up-json',
           field: 'moisture'
         }
       },
@@ -13,7 +13,7 @@ function() {
         title: 'Moisture History',
         type: 'ObservationTimeSeriesCard',
         data: {
-          topic: 'multi-soil-temperature-data-up-json',
+          topic: 'multi-soil-moisture-data-up-json',
           field: 'moisture'
         }
       }

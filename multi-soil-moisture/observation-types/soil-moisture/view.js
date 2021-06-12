@@ -1,13 +1,14 @@
 function(endDevice, latestObservation) {
+  const referenceMoisture = ((latestObservation.data.moisture[4]) * 100).toFixed(2);
   return {
     observationsMapValue: 'moisture',
     observationsMapGauge: 'moisture',
     fields: {
-      temperature: {
+      moisture: {
         value: latestObservation.data.moisture,
         name: 'moisture',
-        text: latestObservation.data.moisture[4].toFixed(2) + 'VWC%',
-        color: latestObservation.data.moisture[4] > 80 ? 'danger' : 'success',
+        text: referenceMoisture + 'VWC%',
+        color: 'success',
         scaleMin: 0,
         scaleMax: 100
       }
