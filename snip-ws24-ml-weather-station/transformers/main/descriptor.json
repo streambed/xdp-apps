@@ -1,0 +1,20 @@
+{
+  "id": "07DE9E41-5814-4843-9416-93B4AB691FBB",
+  "name": "ICT Weather Station with AWS200, ATH25 and PRP02 Transformer",
+  "inlet": "snip-ws24-ml-data-up-mac-payload",
+  "outlets": [
+    "barometric-pressure-data-up-json",
+    "x-orientation-data-up-json",
+    "y-orientation-data-up-json",
+    "solar-radiation-data-up-json",
+    "rain-gauge-data-up-json",
+    "lightning-strikes-data-up-json",
+    "lightning-strike-distance-data-up-json",
+    "wind-speed-data-up-json",
+    "wind-direction-data-up-json",
+    "gust-speed-data-up-json",
+    "air-temp-data-up-json",
+    "vapour-pressure-data-up-json",
+    "relative-humidity-data-up-json"
+  ]
+}
