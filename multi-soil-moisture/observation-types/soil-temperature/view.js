@@ -1,5 +1,6 @@
 function(endDevice, latestObservation) {
-  const referenceTemperature = latestObservation.data.temperature[4].toFixed(2);
+  const maxDepth = latestObservation.data.temperature.length;
+  const referenceTemperature = (maxDepth > 0 ? latestObservation.data.temperature[maxDepth - 1].toFixed(2) : 0);
   return {
     observationsMapValue: 'temperature',
     observationsMapGauge: 'temperature',

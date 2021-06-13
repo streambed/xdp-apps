@@ -1,5 +1,6 @@
 function(endDevice, latestObservation) {
-  const referenceMoisture = ((latestObservation.data.moisture[4]) * 100).toFixed(2);
+  const maxDepth = latestObservation.data.moisture.length;
+  const referenceMoisture = (maxDepth > 0 ? latestObservation.data.moisture[maxDepth - 1].toFixed(2) : 0);
   return {
     observationsMapValue: 'moisture',
     observationsMapGauge: 'moisture',
