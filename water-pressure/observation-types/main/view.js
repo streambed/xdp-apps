@@ -12,7 +12,7 @@ function(endDevice, latestObservation) {
     fields: {
       pressure: {
         value: latestObservation.data.pressure,
-        name: 'pressure',
+        name: 'Pressure',
         text: latestObservation.data.pressure.toFixed(0) + 'bar',
         color: color,
         scaleMin: 0,

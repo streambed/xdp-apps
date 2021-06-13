@@ -7,7 +7,7 @@ function(endDevice, latestObservation) {
     fields: {
       moisture: {
         value: latestObservation.data.moisture,
-        name: 'moisture',
+        name: 'Moisture',
         text: referenceMoisture + 'VWC%',
         color: 'success',
         scaleMin: 0,

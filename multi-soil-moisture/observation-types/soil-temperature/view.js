@@ -7,7 +7,7 @@ function(endDevice, latestObservation) {
     fields: {
       temperature: {
         value: latestObservation.data.temperature,
-        name: 'temperature',
+        name: 'Temperature',
         text: referenceTemperature + '°C',
         color: 'success',
         scaleMin: 0,

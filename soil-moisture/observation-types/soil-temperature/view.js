@@ -5,7 +5,7 @@ function(endDevice, latestObservation) {
     fields: {
       temperature: {
         value: latestObservation.data.temperature,
-        name: 'temperature',
+        name: 'Temperature',
         text: latestObservation.data.temperature.toFixed(2) + ' °C',
         color: latestObservation.data.temperature > 60 ? 'danger' : 'success',
         scaleMin: 0,
