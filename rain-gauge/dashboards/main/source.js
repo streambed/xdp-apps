@@ -7,7 +7,7 @@ function() {
         data: {
           topic: 'rain-gauge-data-up-json',
           field: 'totalLevel',
-          aggregate: function a(topic, observations) {
+          aggregate: function (topic, observations) {
             function isValid(level) {
               return (typeof level === 'number' && level >= 0.0 && level < 100.0);
             }
