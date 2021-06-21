@@ -17,9 +17,9 @@ function() {
             if (observations.length > 0) {
               let firstObs = { level: 0 };
               if (observations.length > 1) {
-                firstObs = observations[0];
+                firstObs = observations[observations.length - 1];
               }
-              const lastObs = observations[observations.length - 1];
+              const lastObs = observations[0];
               if (isValid(firstObs.level) && isValid(lastObs.level)) {
                 totalLevel = lastObs.level - firstObs.level;
               }
