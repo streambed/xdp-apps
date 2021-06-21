@@ -1,6 +1,11 @@
+// Extracts 4 bytes from byte_payload given an offset and converts them to an unsigned integer
+function decodeUInt32(bytes, offset) {
+  return bytes.charCodeAt(offset) << 24 | bytes.charCodeAt(++offset) << 16 | bytes.charCodeAt(++offset) << 8 | bytes.charCodeAt(++offset);
+}
+
 // Extracts 4 bytes from byte_payload given an offset and converts them to a float
 function decodeFloat(bytes, offset) {
-  const word = bytes.charCodeAt(offset) << 24 | bytes.charCodeAt(++offset) << 16 | bytes.charCodeAt(++offset) << 8 | bytes.charCodeAt(++offset);
+  const word = decodeUInt32(bytes, offset);
   const sign = (word >>> 31 === 0) ? 1.0 : -1.0;
   const e = word >>> 23 & 0xff;
   const m = (e === 0) ? (word & 0x7fffff) << 1 : (word & 0x7fffff) | 0x800000;
@@ -30,7 +35,7 @@ function transform(time, nwkAddr, fPort, payload) {
     if ((header & 0x40) === 0x40 && payloadBytes.length >= 18) {
       return [{
         outlet: RAIN_GAUGE, data: {
-          "time": time, "nwkAddr": nwkAddr, "level": decodeFloat(payloadBytes, 14) * 0.2
+          "time": time, "nwkAddr": nwkAddr, "level": decodeUInt32(payloadBytes, 14) * 0.2
         }
       }];
     } else if ((header & 0x80) === 0x80) {
@@ -68,6 +73,10 @@ function transform(time, nwkAddr, fPort, payload) {
 
 function test() {
   var tests = {
+    "rain gauge": [
+      transform("2020-02-06T23:44:04.539Z", 65959, 1, "E0AAAAAAAAAAAAAAAAAAAAAG"),
+      [{ outlet: RAIN_GAUGE, data: { time: "2020-02-06T23:44:04.539Z", nwkAddr: 65959, level: 1.2000000000000002 } }]
+    ],
     "wind reading": [
       transform("2020-02-06T23:44:04.539Z", 65959, 1, "E4BDqwAAPczMzQ=="),
       [{ outlet: WIND_DIRECTION, data: { time: "2020-02-06T23:44:04.539Z", nwkAddr: 65959, windDirection: 342 } }, { outlet: WIND_SPEED, data: { time: "2020-02-06T23:44:04.539Z", nwkAddr: 65959, windSpeed: 0.10000000149011612 } }]
