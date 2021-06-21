@@ -6,10 +6,11 @@ function() {
         type: 'ObservationTimeSeriesCard',
         data: {
           topic: 'rain-gauge-data-up-json',
-          field: 'totalLevel',
+          plotType: 'bar',
+          field: 'level',
           aggregate: function (topic, observations) {
             function isValid(level) {
-              return (typeof level === 'number' && level >= 0.0 && level < 100.0);
+              return (typeof level === 'number' && level >= 0.0 && level < 30.0);
             }
 
             let totalLevel = 0;
@@ -25,7 +26,7 @@ function() {
             }
 
             return {
-              totalLevel: totalLevel
+              level: totalLevel
             };
           }
         }
