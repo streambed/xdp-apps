@@ -1,0 +1,8 @@
+{
+  "id": "56C17B22-BA50-4188-A963-482B9DD6F8DD",
+  "name": "Farmo Electric Fence",
+  "inlet": "farmo-e-fence-data-up-mac-payload",
+  "outlets": [
+    "electric-fence-data-up-json"
+  ]
+}
