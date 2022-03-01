@@ -1,0 +1,8 @@
+{
+  "id": "F1AA283E-6024-4FDF-894A-A83917D7B6E4",
+  "name": "Farmo Water Flow Transformer",
+  "inlet": "farmo-w-flow-data-up-mac-payload",
+  "outlets": [
+    "water-flow-data-up-json"
+  ]
+}
