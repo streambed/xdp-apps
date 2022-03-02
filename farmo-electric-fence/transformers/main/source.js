@@ -1,24 +1,20 @@
 function transform(time, nwkAddr, fPort, payload) {
-  if (fPort === 1) {
-    var payloadBytes = atob(payload);
-    if (payloadBytes.length >= 5 && payloadBytes.charCodeAt(0) == 0x58) {
-      const voltage = (
-        (parseInt(payloadBytes.charCodeAt(1)) << 24) |
-        (parseInt(payloadBytes.charCodeAt(2)) << 16) |
-        (parseInt(payloadBytes.charCodeAt(3)) << 8) |
-        (parseInt(payloadBytes.charCodeAt(4)))
-      );
-      if ((voltage & 0x80000000) > 0) {
-        voltage = voltage - 0x100000000;
-      }
-      return {
-        time: time,
-        nwkAddr: nwkAddr,
-        voltage: voltage * 0.000001
-      };
-    } else {
-      return [];
+  var payloadBytes = atob(payload);
+  if (payloadBytes.length >= 5 && payloadBytes.charCodeAt(0) == 0x58) {
+    const voltage = (
+      (parseInt(payloadBytes.charCodeAt(1)) << 24) |
+      (parseInt(payloadBytes.charCodeAt(2)) << 16) |
+      (parseInt(payloadBytes.charCodeAt(3)) << 8) |
+      (parseInt(payloadBytes.charCodeAt(4)))
+    );
+    if ((voltage & 0x80000000) > 0) {
+      voltage = voltage - 0x100000000;
     }
+    return {
+      time: time,
+      nwkAddr: nwkAddr,
+      voltage: voltage * 0.000001
+    };
   } else {
     return [];
   }
