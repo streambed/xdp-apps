@@ -1,0 +1,8 @@
+{
+  "id": "B56B120A-20D8-4737-9624-E0DD25E2D88E",
+  "name": "Farmo Soil Moisture/Temp",
+  "inlet": "farmo-moisture-temp-data-up-mac-payload",
+  "outlets": [
+    "soil-vwc-data-up-json"
+  ]
+}

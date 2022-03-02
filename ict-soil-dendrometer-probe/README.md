@@ -44,7 +44,7 @@ docker run --rm -ti streambed-cli/amd64/lora-packet-encoder:latest 6D5E58EF92BBC
 ```
 Publish the Base64 payload
 ```
-mosquitto_pub -h localhost -p 1883 -t /tutorial/soil-dendrometer/app2dev/data -l \
+mosquitto_pub -h localhost -p 1883 -t /tutorial/soil/app2dev/data -l \
   <<< '{"key":10322730,"data":"QCqDnRgAAgABq6/vOZkU+K/nrG2GbDkEeom56vXUsSsR/w0="}'
 ```
 
@@ -54,7 +54,7 @@ docker run --rm -ti streambed-cli/amd64/lora-packet-encoder:latest 6D5E58EF92BBC
 ```
 Publish the Base64 payload
 ```
-mosquitto_pub -h localhost -p 1883 -t /tutorial/soil-dendrometer/app2dev/data -l \
+mosquitto_pub -h localhost -p 1883 -t /tutorial/soil/app2dev/data -l \
   <<< '{"key":10322730,"data":"QCqDnRgAAgABq6/vOZkU+K/nrWoVa5cEeom5KxH/DQ=="}'
 ```
 

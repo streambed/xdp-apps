@@ -1,5 +1,5 @@
 {
 	"topic": "soil-ec-data-up-json",
 	"name": "Soil Electrical Conductivity",
-	"secretPath": "secrets.soil-dendrometer-ec.key"
+	"secretPath": "secrets.soil-ec.key"
 }
