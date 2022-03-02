@@ -1,5 +1,5 @@
 {
 	"topic": "soil-vwc-data-up-json",
 	"name": "Soil VWC",
-	"secretPath": "secrets.soil-dendrometer-vwc.key"
+	"secretPath": "secrets.soil-vwc.key"
 }

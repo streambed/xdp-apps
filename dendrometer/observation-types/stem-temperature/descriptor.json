@@ -1,5 +1,5 @@
 {
 	"topic": "stem-temperature-data-up-json",
 	"name": "Stem Temperature",
-	"secretPath": "secrets.soil-dendrometer-stem-temperature.key"
+	"secretPath": "secrets.dendrometer-stem-temperature.key"
 }
