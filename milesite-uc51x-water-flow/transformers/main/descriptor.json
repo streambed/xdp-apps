@@ -1,0 +1,8 @@
+{
+  "id": "017B4119-6C77-4E91-9361-BB53A550DED2",
+  "name": "Milesite uc51x Water Flow Transformer",
+  "inlet": "milesite-uc51x-data-up-mac-payload",
+  "outlets": [
+    "water-flow-data-up-json"
+  ]
+}
