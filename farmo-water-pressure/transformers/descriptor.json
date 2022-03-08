@@ -1,0 +1,8 @@
+{
+  "id": "6AE26CC5-9213-41B0-B2A9-A7985EA95ACF",
+  "name": "Farmo Water Pressure Sensor",
+  "inlet": "farmo-water-pressure-data-up-mac-payload",
+  "outlets": [
+    "water-pressure-data-up-json"
+  ]
+}
