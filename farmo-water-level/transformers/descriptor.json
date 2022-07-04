@@ -1,0 +1,8 @@
+{
+  "id": "971D2D03-B7CE-4F92-AA9B-532547F852EC",
+  "name": "Farmo Water Level Sensor",
+  "inlet": "farmo-water-level-data-up-mac-payload",
+  "outlets": [
+    "waterstate-data-up-json"
+  ]
+}
