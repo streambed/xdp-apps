@@ -3,6 +3,7 @@
   "name": "Farmo Soil Moisture/Temp",
   "inlet": "farmo-moisture-temp-data-up-mac-payload",
   "outlets": [
-    "soil-vwc-data-up-json"
+    "soil-vwc-data-up-json",
+    "soil-temperature-data-up-json"
   ]
 }
