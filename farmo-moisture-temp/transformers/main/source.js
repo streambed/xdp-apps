@@ -31,7 +31,7 @@ function transform(time, nwkAddr, fPort, payload) {
 function test() {
   const tests = {
     "voltage": [
-      transform("2022-03-02T00:00:00.000Z", 2, 1, "DSMAAAg+CH0AHBA="),
+      transform("2022-03-02T00:00:00.000Z", 2, 2, "DSMAAAg+CH0AHBA="),
       [
         {"outlet":0,"data":{"time":"2022-03-02T00:00:00.000Z","nwkAddr":2,"vwc":0.21100000000000002}},
         {"outlet":1,"data":{"time":"2022-03-02T00:00:00.000Z","nwkAddr":2,"temperature":21.73}}
