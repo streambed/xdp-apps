@@ -1,0 +1,6 @@
+{
+  "id": "2D97F254-86F7-419B-B48F-875147C1D749",
+  "name": "Ellenex PLD2-L Water Pressure/Temp Sensor 5m Cable",
+  "inlet": "ellenex-pld2-l-5m-data-up-mac-payload",
+  "outlets": ["waterstate-data-up-json"]
+}
